@@ -395,7 +395,7 @@ export const artworks: Artwork[] = [
     artist: "Vincent van Gogh, 1889",
     description: "This post-impressionist masterpiece depicts a swirling night sky over a village. Van Gogh painted it while in an asylum, and it represents his unique vision of movement and energy in nature. The painting's dynamic brushstrokes and vivid colors revolutionized how artists could express emotion through technique.",
     location: "Museum of Modern Art, New York",
-    imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+    imageUrl: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
   }
 ];
 

@@ -65,19 +65,11 @@ export function ScienceMath() {
       {/* Math Concept Explanations */}
       <Card className="dashboard-card">
         <h3 className="subsection-title sky-blue-accent mb-4">Understanding Today's Math Concept</h3>
-        <div className="space-y-4">
-          <div className="bg-sky-blue bg-opacity-10 p-4 rounded-lg">
-            <h4 className="font-semibold text-dark-brown mb-2 text-sm">5th Grade Level</h4>
-            <p className="text-sm text-gray-700 leading-relaxed" data-testid="math-simple-explanation">
-              {math.simpleExplanation}
-            </p>
-          </div>
-          <div className="bg-sky-blue bg-opacity-20 p-4 rounded-lg">
-            <h4 className="font-semibold text-dark-brown mb-2 text-sm">High School Level</h4>
-            <p className="text-sm text-gray-700 leading-relaxed" data-testid="math-detailed-explanation">
-              {math.detailedExplanation}
-            </p>
-          </div>
+        <div className="bg-sky-blue bg-opacity-20 p-4 rounded-lg">
+          <h4 className="font-semibold text-dark-brown mb-2 text-sm">High School Level</h4>
+          <p className="text-sm text-gray-700 leading-relaxed" data-testid="math-detailed-explanation">
+            {math.detailedExplanation}
+          </p>
         </div>
       </Card>
     </section>
