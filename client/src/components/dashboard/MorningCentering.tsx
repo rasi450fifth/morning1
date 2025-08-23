@@ -90,8 +90,17 @@ export function MorningCentering() {
         </Card>
 
         {/* Prayer Times */}
-        <Card className="dashboard-card">
-          <h3 className="subsection-title mb-4">Prayer Times Today</h3>
+        <Card className="dashboard-card relative overflow-hidden">
+          <div 
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1591604021695-0c52aecea7b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          />
+          <div className="relative z-10 bg-white bg-opacity-90 p-6 rounded-2xl">
+            <h3 className="subsection-title mb-4 text-dark-brown font-semibold">Prayer Times Today</h3>
           
           {prayerLoading && (
             <div className="animate-pulse space-y-2">
@@ -114,14 +123,15 @@ export function MorningCentering() {
             <div className="space-y-2">
               {prayerTimes.map((prayer, index) => (
                 <div key={prayer.name} className="flex justify-between items-center py-1" data-testid={`prayer-${prayer.name.toLowerCase()}`}>
-                  <span className={`font-medium ${getPrayerColor(index)}`}>
+                  <span className={`font-semibold ${getPrayerColor(index)}`}>
                     {prayer.name}
                   </span>
-                  <span className="text-gray-600">{prayer.time}</span>
+                  <span className="text-dark-brown font-medium">{prayer.time}</span>
                 </div>
               ))}
             </div>
           )}
+          </div>
         </Card>
       </div>
     </section>

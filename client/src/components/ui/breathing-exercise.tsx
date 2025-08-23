@@ -9,8 +9,18 @@ interface BreathingExerciseProps {
 export function BreathingExercise({ className }: BreathingExerciseProps) {
   const [isActive, setIsActive] = useState(false);
   const [phase, setPhase] = useState<'inhale' | 'hold' | 'exhale' | 'pause'>('inhale');
-  const [count, setCount] = useState(4);
+  const [count, setCount] = useState(6);
   const [cycle, setCycle] = useState(0);
+
+  const getPhaseDuration = (phase: string) => {
+    switch (phase) {
+      case 'inhale': return 6;
+      case 'hold': return 8;
+      case 'exhale': return 8;
+      case 'pause': return 6;
+      default: return 6;
+    }
+  };
 
   useEffect(() => {
     if (!isActive) return;
@@ -19,24 +29,32 @@ export function BreathingExercise({ className }: BreathingExerciseProps) {
       setCount((prev) => {
         if (prev > 1) return prev - 1;
         
-        // Move to next phase
+        // Move to next phase and get duration
+        let nextPhaseDuration = 6; // default
         setPhase((currentPhase) => {
+          let nextPhase: 'inhale' | 'hold' | 'exhale' | 'pause';
           switch (currentPhase) {
             case 'inhale':
-              return 'hold';
+              nextPhase = 'hold';
+              break;
             case 'hold':
-              return 'exhale';
+              nextPhase = 'exhale';
+              break;
             case 'exhale':
-              return 'pause';
+              nextPhase = 'pause';
+              break;
             case 'pause':
               setCycle(c => c + 1);
-              return 'inhale';
+              nextPhase = 'inhale';
+              break;
             default:
-              return 'inhale';
+              nextPhase = 'inhale';
           }
+          nextPhaseDuration = getPhaseDuration(nextPhase);
+          return nextPhase;
         });
         
-        return 4;
+        return nextPhaseDuration;
       });
     }, 1000);
 
@@ -46,14 +64,14 @@ export function BreathingExercise({ className }: BreathingExerciseProps) {
   const startExercise = () => {
     setIsActive(true);
     setPhase('inhale');
-    setCount(4);
+    setCount(6);
     setCycle(0);
   };
 
   const stopExercise = () => {
     setIsActive(false);
     setPhase('inhale');
-    setCount(4);
+    setCount(6);
   };
 
   const getPhaseText = () => {
@@ -91,7 +109,7 @@ export function BreathingExercise({ className }: BreathingExerciseProps) {
           ) : (
             <>
               <Play className="w-4 h-4 mr-2" />
-              Start 4-4-4-4
+              Start 6-8-8-6
             </>
           )}
         </Button>

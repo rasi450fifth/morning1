@@ -107,17 +107,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
           international: [
             { title: "Climate summit reaches historic agreement on carbon emissions", url: "https://www.bbc.com/news" },
             { title: "European markets respond to new trade policies", url: "https://www.bbc.com/news" },
-            { title: "Scientists discover new archaeological site in Peru", url: "https://www.bbc.com/news" }
+            { title: "Scientists discover new archaeological site in Peru", url: "https://www.bbc.com/news" },
+            { title: "International space station receives new crew members", url: "https://www.bbc.com/news" },
+            { title: "Diplomatic talks continue over regional trade agreements", url: "https://www.bbc.com/news" },
+            { title: "Global health initiative launches vaccination program", url: "https://www.bbc.com/news" },
+            { title: "Technology partnership formed between emerging economies", url: "https://www.bbc.com/news" }
           ],
           us: [
             { title: "Infrastructure bill allocates funds for renewable energy", url: "https://www.bbc.com/news" },
             { title: "Education reform proposals advance in Congress", url: "https://www.bbc.com/news" },
-            { title: "Tech companies announce major hiring initiatives", url: "https://www.bbc.com/news" }
+            { title: "Tech companies announce major hiring initiatives", url: "https://www.bbc.com/news" },
+            { title: "Federal reserve considers new monetary policy measures", url: "https://www.bbc.com/news" },
+            { title: "Supreme Court hears case on digital privacy rights", url: "https://www.bbc.com/news" },
+            { title: "National parks service expands conservation programs", url: "https://www.bbc.com/news" },
+            { title: "Healthcare system improvements show positive outcomes", url: "https://www.bbc.com/news" }
           ],
           business: [
             { title: "Electric vehicle sales surge in Q4 reports", url: "https://www.bbc.com/news" },
             { title: "Banking sector adapts to new digital payment trends", url: "https://www.bbc.com/news" },
-            { title: "Startup funding reaches new milestone", url: "https://www.bbc.com/news" }
+            { title: "Startup funding reaches new milestone", url: "https://www.bbc.com/news" },
+            { title: "Renewable energy companies report record growth", url: "https://www.bbc.com/news" },
+            { title: "Artificial intelligence market expands globally", url: "https://www.bbc.com/news" },
+            { title: "Supply chain innovations reduce delivery times", url: "https://www.bbc.com/news" },
+            { title: "Cryptocurrency regulations updated for institutional investors", url: "https://www.bbc.com/news" }
           ]
         };
         
@@ -141,7 +153,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const result = responses[i];
         if (result.status === 'fulfilled' && result.value.ok) {
           const data = await result.value.json();
-          const articles = data.articles?.slice(0, 3).map((article: any) => ({
+          const articles = data.articles?.slice(0, 7).map((article: any) => ({
             title: article.title,
             url: article.url
           })) || [];
@@ -152,7 +164,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Add some international news (can be expanded to use separate API call)
-      newsData.international = newsData.us.slice(0, 3);
+      newsData.international = newsData.us.slice(0, 7);
       
       res.json(newsData);
     } catch (error) {

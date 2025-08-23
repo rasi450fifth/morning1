@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useHabits, useDailyGoals } from '@/hooks/use-local-storage';
-import { Plus } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 
 export function DailyPlanning() {
-  const { habits, toggleHabit, addHabit } = useHabits();
-  const { goals, lastUpdated, updateGoals } = useDailyGoals();
+  const { habits, toggleHabit, addHabit, deleteHabit } = useHabits();
+  const { goals, lastUpdated, updateGoals, yesterdaysGoals } = useDailyGoals();
   const [newHabitName, setNewHabitName] = useState('');
   const [showAddHabit, setShowAddHabit] = useState(false);
 
@@ -46,6 +46,15 @@ export function DailyPlanning() {
                 <span className="text-sm text-gray-500" data-testid={`habit-streak-${habit.id}`}>
                   {habit.streak} day streak
                 </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => deleteHabit(habit.id)}
+                  className="p-1 hover:bg-red-100 hover:text-red-600 text-gray-400"
+                  data-testid={`habit-delete-${habit.id}`}
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
               </div>
             ))}
             
@@ -85,7 +94,7 @@ export function DailyPlanning() {
         {/* Daily Goals */}
         <Card className="dashboard-card">
           <h3 className="subsection-title mb-4">Today's Goals</h3>
-          <div className="space-y-3">
+          <div className="space-y-4">
             <Textarea
               value={goals}
               onChange={(e) => updateGoals(e.target.value)}
@@ -100,6 +109,15 @@ export function DailyPlanning() {
               </span>
               <span>Auto-saved</span>
             </div>
+            
+            {yesterdaysGoals && (
+              <div className="pt-4 border-t border-gray-100">
+                <h4 className="text-sm font-medium text-gray-700 mb-2">Yesterday's Goals</h4>
+                <div className="bg-gray-50 p-3 rounded-lg text-sm text-gray-600" data-testid="yesterday-goals">
+                  {yesterdaysGoals}
+                </div>
+              </div>
+            )}
           </div>
         </Card>
       </div>

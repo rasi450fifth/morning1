@@ -50,17 +50,31 @@ export function useHabits() {
     setHabits(prev => [...prev, newHabit]);
   };
 
-  return { habits, toggleHabit, addHabit };
+  const deleteHabit = (id: string) => {
+    setHabits(prev => prev.filter(habit => habit.id !== id));
+  };
+
+  return { habits, toggleHabit, addHabit, deleteHabit };
 }
 
 export function useDailyGoals() {
   const [goals, setGoals] = useLocalStorage('dashboard-goals', '');
   const [lastUpdated, setLastUpdated] = useLocalStorage('dashboard-goals-updated', '');
+  const [yesterdaysGoals, setYesterdaysGoals] = useLocalStorage('dashboard-yesterday-goals', '');
 
   const updateGoals = (newGoals: string) => {
+    // Check if it's a new day
+    const today = new Date().toDateString();
+    const lastDate = lastUpdated ? new Date(lastUpdated).toDateString() : '';
+    
+    if (today !== lastDate && goals) {
+      // Save current goals as yesterday's goals
+      setYesterdaysGoals(goals);
+    }
+    
     setGoals(newGoals);
     setLastUpdated(new Date().toLocaleString());
   };
 
-  return { goals, lastUpdated, updateGoals };
+  return { goals, lastUpdated, updateGoals, yesterdaysGoals };
 }
