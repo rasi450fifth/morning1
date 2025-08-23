@@ -41,9 +41,6 @@ export function DailyPlanning() {
                   data-testid={`habit-checkbox-${habit.id}`}
                 />
                 <span className="flex-1">{habit.name}</span>
-                <span className="text-sm text-muted-foreground" data-testid={`habit-streak-${habit.id}`}>
-                  {habit.streak} day streak
-                </span>
                 <Button
                   variant="ghost"
                   size="sm"
