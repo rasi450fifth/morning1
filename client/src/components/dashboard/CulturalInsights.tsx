@@ -1,10 +1,9 @@
 import { Card } from '@/components/ui/card';
-import { getTodaysCultural, getTodaysConsequences, getTodaysAltHistory } from '@/lib/content-database';
+import { getTodaysCultural, getTodaysConsequences } from '@/lib/content-database';
 
 export function CulturalInsights() {
   const cultural = getTodaysCultural();
   const consequences = getTodaysConsequences();
-  const altHistory = getTodaysAltHistory();
 
   const getBorderColor = (color: string) => {
     const colorMap = {
@@ -65,18 +64,18 @@ export function CulturalInsights() {
           </div>
         </Card>
 
-        {/* Alternative History */}
+        {/* Cultural Practices */}
         <Card className="dashboard-card">
-          <h3 className="subsection-title sky-blue-accent mb-4">What If...</h3>
+          <h3 className="subsection-title sky-blue-accent mb-4">Cultural Practice</h3>
           <div className="space-y-3">
-            <h4 className="font-semibold text-dark-brown" data-testid="althistory-scenario">
-              {altHistory.scenario}
+            <h4 className="font-semibold text-dark-brown" data-testid="cultural-practice">
+              Traditional Japanese Hanami
             </h4>
-            <p className="text-sm text-gray-700 leading-relaxed" data-testid="althistory-speculation">
-              {altHistory.speculation}
+            <p className="text-sm text-gray-700 leading-relaxed" data-testid="practice-description">
+              Cherry blossom viewing represents the beauty of impermanence in Japanese culture, teaching us to appreciate fleeting moments of beauty rather than pursuing permanent happiness.
             </p>
-            <div className="text-xs text-sky-blue font-medium" data-testid="althistory-impact">
-              Impact: {altHistory.impact}
+            <div className="text-xs text-sky-blue font-medium" data-testid="practice-lesson">
+              Wisdom: Find meaning in transient experiences
             </div>
           </div>
         </Card>

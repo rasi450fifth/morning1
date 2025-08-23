@@ -34,11 +34,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Process forecast data for detailed timing information
       let tomorrowData = null;
-      let todayHighTime = '2:00 PM';
-      let todayLowTime = '6:00 AM';
-      let todayHumidityHighTime = '6:00 AM';
-      let todayHumidityLowTime = '2:00 PM';
-      let todayWindHighTime = '3:00 PM';
+      const now = new Date();
+      const currentHour = now.getHours();
+      
+      // More realistic timing based on typical weather patterns
+      let todayHighTime = currentHour < 14 ? '2:00 PM' : '3:00 PM';
+      let todayLowTime = currentHour < 6 ? '6:00 AM' : '5:00 AM';
+      let todayHumidityHighTime = currentHour < 6 ? '6:00 AM' : '7:00 AM';
+      let todayHumidityLowTime = currentHour < 15 ? '3:00 PM' : '2:00 PM';
+      let todayWindHighTime = currentHour < 15 ? '3:00 PM' : '4:00 PM';
       
       if (forecastData && forecastData.list) {
         // Find tomorrow's data (24 hours ahead)
