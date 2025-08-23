@@ -1,0 +1,192 @@
+# Personal Morning Dashboard - React App Development Prompt
+
+Create a web-hosted React application for a personal morning dashboard. This should be a single-page application with clean, Apple-inspired design that displays various educational and informational content.
+
+## Technical Requirements
+
+### Framework & Hosting
+
+- React application optimized for web hosting (Vercel, Netlify, or similar)
+- Responsive design that works on both desktop and mobile (iPhone specifically)
+- Clean, minimalist Apple-style design with excellent typography and spacing
+- Single scrollable page layout
+- Use React hooks for state management
+- Store user data (habits, goals) in localStorage with cloud sync capability if possible
+
+### Location Settings
+
+- Default location: Vienna, Virginia for weather and prayer times
+- Allow user to change location and persist this setting
+
+## Dashboard Content (In Order)
+
+### 1. Morning Centering & Orientation
+
+1. **Box breathing reminder** - Simple visual guide or timer for 4-4-4-4 breathing
+1. **Weather forecast** - Current conditions and 3-day forecast for Vienna, VA (use OpenWeatherMap API or similar free service)
+1. **Prayer times** - Islamic prayer times for Vienna, VA (use Aladhan API or similar)
+
+### 2. Daily Planning & Tracking
+
+1. **Habit tracker** - Customizable list of habits with checkboxes, data persists daily
+1. **Daily goal reminder** - Text input for daily goals, saves and displays
+
+### 3. Current Events & News
+
+1. **BBC news headlines** - Top 5-7 headlines each from: International, US, and Business sections (use BBC RSS feeds or News API)
+
+### 4. Language Learning (French)
+
+1. **3 French nouns** - Display with English translations and example usage
+1. **1 conjugated French verb** - Show verb with full present tense conjugation
+1. **1 French grammar lesson** - Brief, practical grammar tip or rule
+
+### 5. Historical Knowledge
+
+1. **This day in history** - 3 events: one from 1900-1979, one from 1800s, one from 1700s
+1. **Historical figure spotlight** - Different historical figure daily with brief biography
+
+### 6. Science & Mathematics
+
+1. **Scientific fact/natural phenomenon** - Brief explanation of an interesting scientific concept
+1. **Mathematical concept or puzzle** - Daily math problem or concept explanation
+1. **Neuroscience nugget** - Brief insight about how the brain works
+
+### 7. Arts & Culture
+
+1. **Important painting** - Display image with artist, date, and paragraph about art historical significance
+1. **Etymology** - Interesting English word with origin story
+1. **Literary opening paragraph** - First paragraph from a famous book with title/author
+
+### 8. Interactive Challenges
+
+1. **Geography challenge** - Image of lesser-known but important location, clickable to reveal answer
+1. **Chess position puzzle** - Chess board position with difficulty scale 1-10, show best move on click
+1. **Logic puzzle** - Daily logic problem or brain teaser
+1. **Reverse engineering challenge** - How does this everyday object work?
+
+### 9. Analytical Thinking
+
+1. **Optical illusion** - Show illusion with explanation of why it works
+1. **Statistical paradox** - Surprising correlation or statistical insight
+1. **Philosophical thought experiment** - Brief scenario for reflection
+1. **Logical fallacy identification** - Example of common logical error
+1. **Game theory scenario** - Simple game theory problem or insight
+1. **Cognitive bias awareness** - Daily bias to watch out for
+
+### 10. Problem-Solving & Innovation
+
+1. **Engineering challenge** - Practical problem-solving scenario
+1. **Design principle spotlight** - Why a particular design works well
+1. **Invention necessity** - What problem led to a particular invention?
+
+### 11. Cultural & Social Insights
+
+1. **Cross-cultural problem-solving** - How different cultures approach the same problem
+1. **Unintended consequences case study** - Brief example of solutions creating new problems
+1. **Alternative history speculation** - What if this historical event happened differently?
+
+### 12. Nature & Practical Life
+
+1. **Seasonal gardening/nature observation** - What’s happening in nature now in Virginia
+
+### 13. Light Relief & Closing
+
+1. **Daily joke** - Clean, clever humor
+1. **Prayer times** - Repeat prayer times for end-of-day reference
+
+## Content Sources & APIs
+
+### Required APIs/Data Sources:
+
+- **Weather:** OpenWeatherMap API (free tier)
+- **Prayer Times:** Aladhan API (free)
+- **News:** BBC RSS feeds or NewsAPI (free tier)
+- **Content Database:** Create rotating database of educational content or use appropriate free APIs where available
+
+### Content Strategy:
+
+- For educational content without free APIs (art, literature, history, etc.), create a substantial database of rotating content
+- Ensure content rotates daily and doesn’t repeat for at least 30 days
+- All content should be factual, educational, and appropriate
+
+## Design Specifications
+
+### Visual Style:
+
+- Clean, minimalist design inspired by Apple’s design language
+- Generous white space
+- High-quality typography (system fonts preferred)
+- Subtle shadows and clean lines
+- Responsive grid layout
+- Smooth transitions and micro-interactions
+- Consistent spacing and alignment
+
+### Color Scheme:
+
+- Primary background: Warm off-white or cream
+- Accent colors: Sky blue (#87CEEB), soft purple (#9370DB), coral pink (#FF7F7F), sage green (#87A96B)
+- Text: Very dark brown (#2F1B14) for excellent readability
+- Section dividers and subtle elements: Light versions of accent colors
+- Interactive elements: Use accent colors with hover effects
+- Create a warm, comforting palette that’s energizing but not overwhelming
+- Ensure high contrast between dark brown text and lighter backgrounds
+
+### Layout:
+
+- Single-column layout on mobile
+- Comfortable reading width on desktop
+- Clear visual hierarchy
+- Grouped related content with subtle dividers
+- Sticky navigation if needed
+
+## Technical Implementation Notes
+
+### Performance:
+
+- Lazy load images and heavy content
+- Cache API responses appropriately
+- Optimize for fast loading on mobile networks
+
+### Error Handling:
+
+- Graceful fallbacks when APIs are unavailable
+- Clear error messages for users
+- Offline functionality where possible
+
+### Data Persistence:
+
+- Use localStorage for habits, goals, and user preferences
+- Consider implementing cloud sync for cross-device access
+- Daily data should reset appropriately (habits reset, goals can carry over)
+
+### Deployment:
+
+- Configure for easy deployment to Vercel, Netlify, or similar
+- Include deployment instructions
+- Ensure environment variables are properly configured for production
+
+## Development Deliverables
+
+Please provide:
+
+1. Complete React application code
+1. Package.json with all dependencies
+1. Deployment configuration files
+1. README with setup and deployment instructions
+1. Environment variable configuration guide
+1. List of required API keys and setup instructions
+
+## Success Criteria
+
+The application should:
+
+- Load quickly on both desktop and mobile
+- Display all 36 content elements in logical order
+- Save and restore user data (habits, goals) between sessions
+- Handle API failures gracefully
+- Provide an engaging, educational morning experience
+- Look professional and polished
+- Be easily deployable to web hosting platform
+
+Create a complete, production-ready React application that fulfills all these requirements.
