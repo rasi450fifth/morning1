@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(36, 33%, 98%);
+  --foreground: hsl(25, 45%, 11%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(25, 45%, 11%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(25, 45%, 11%);
+  --primary: hsl(199, 60%, 73%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(25, 45%, 11%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(240, 1.9608%, 90%);
+  --muted-foreground: hsl(25, 45%, 11%);
+  --accent: hsl(200, 100%, 96%);
+  --accent-foreground: hsl(199, 60%, 73%);
+  --destructive: hsl(356.3033, 90.5579%, 54.3137%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(201.4286, 30.4348%, 90.9804%);
+  --input: hsl(200, 23.0769%, 97.4510%);
+  --ring: hsl(199, 60%, 73%);
+  
+  /* Custom Dashboard Colors */
+  --warm-bg: hsl(36, 33%, 98%);
+  --sky-blue: hsl(199, 60%, 73%);
+  --soft-purple: hsl(248, 53%, 64%);
+  --coral-pink: hsl(0, 50%, 75%);
+  --sage-green: hsl(82, 26%, 65%);
+  --dark-brown: hsl(25, 45%, 11%);
+  --light-accent: hsl(200, 100%, 96%);
+  
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: 1rem;
+  --shadow-2xs: 0px 1px 2px 0px hsl(0, 0%, 0%, 0.05);
+  --shadow-xs: 0px 1px 3px 0px hsl(0, 0%, 0%, 0.1), 0px 1px 2px 0px hsl(0, 0%, 0%, 0.06);
+  --shadow-sm: 0px 1px 3px 0px hsl(0, 0%, 0%, 0.1), 0px 1px 2px 0px hsl(0, 0%, 0%, 0.06);
+  --shadow: 0px 1px 3px 0px hsl(0, 0%, 0%, 0.1), 0px 1px 2px 0px hsl(0, 0%, 0%, 0.06);
+  --shadow-md: 0px 4px 6px -1px hsl(0, 0%, 0%, 0.1), 0px 2px 4px -1px hsl(0, 0%, 0%, 0.06);
+  --shadow-lg: 0px 10px 15px -3px hsl(0, 0%, 0%, 0.1), 0px 4px 6px -2px hsl(0, 0%, 0%, 0.05);
+  --shadow-xl: 0px 20px 25px -5px hsl(0, 0%, 0%, 0.1), 0px 10px 10px -5px hsl(0, 0%, 0%, 0.04);
+  --shadow-2xl: 0px 25px 50px -12px hsl(0, 0%, 0%, 0.25);
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(200, 6.6667%, 91.1765%);
+  --card: hsl(228, 9.8039%, 10%);
+  --card-foreground: hsl(0, 0%, 85.0980%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(200, 6.6667%, 91.1765%);
+  --primary: hsl(199, 60%, 73%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(195, 15.3846%, 94.9020%);
+  --secondary-foreground: hsl(25, 45%, 11%);
+  --muted: hsl(0, 0%, 9.4118%);
+  --muted-foreground: hsl(210, 3.3898%, 46.2745%);
+  --accent: hsl(205.7143, 70%, 7.8431%);
+  --accent-foreground: hsl(199, 60%, 73%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--warm-bg);
+    color: var(--dark-brown);
+  }
+}
+
+@layer components {
+  .dashboard-card {
+    @apply bg-white rounded-2xl p-6 shadow-sm border border-gray-100;
+  }
+  
+  .section-title {
+    @apply text-xl font-semibold mb-4;
+    color: var(--dark-brown);
+  }
+  
+  .subsection-title {
+    @apply text-lg font-medium mb-4;
+  }
+  
+  .sky-blue-accent {
+    color: var(--sky-blue);
+  }
+  
+  .soft-purple-accent {
+    color: var(--soft-purple);
+  }
+  
+  .coral-pink-accent {
+    color: var(--coral-pink);
+  }
+  
+  .sage-green-accent {
+    color: var(--sage-green);
+  }
+  
+  .btn-sky-blue {
+    background-color: var(--sky-blue);
+    @apply text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-all duration-200;
+  }
+  
+  .btn-coral-pink {
+    background-color: var(--coral-pink);
+    @apply text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-all duration-200;
+  }
+  
+  .btn-soft-purple {
+    background-color: var(--soft-purple);
+    @apply text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-all duration-200;
+  }
+  
+  .btn-sage-green {
+    background-color: var(--sage-green);
+    @apply text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  .text-warm-bg {
+    color: var(--warm-bg);
+  }
+  
+  .text-sky-blue {
+    color: var(--sky-blue);
+  }
+  
+  .text-soft-purple {
+    color: var(--soft-purple);
+  }
+  
+  .text-coral-pink {
+    color: var(--coral-pink);
+  }
+  
+  .text-sage-green {
+    color: var(--sage-green);
+  }
+  
+  .text-dark-brown {
+    color: var(--dark-brown);
+  }
+  
+  .bg-warm-bg {
+    background-color: var(--warm-bg);
+  }
+  
+  .bg-sky-blue {
+    background-color: var(--sky-blue);
+  }
+  
+  .bg-soft-purple {
+    background-color: var(--soft-purple);
+  }
+  
+  .bg-coral-pink {
+    background-color: var(--coral-pink);
+  }
+  
+  .bg-sage-green {
+    background-color: var(--sage-green);
+  }
+  
+  .bg-light-accent {
+    background-color: var(--light-accent);
+  }
+}
