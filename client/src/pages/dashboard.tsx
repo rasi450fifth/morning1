@@ -40,23 +40,23 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-warm-bg">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-warm-bg/90 backdrop-blur-md border-b border-gray-200">
+      <header className="sticky top-0 z-50 bg-warm-bg/90 backdrop-blur-md border-b border-border">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-semibold text-dark-brown" data-testid="main-title">
               Good Morning
             </h1>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600" data-testid="current-date">
+              <span className="text-sm text-muted-foreground" data-testid="current-date">
                 {currentDate}
               </span>
               <Button
                 variant="ghost"
                 size="sm"
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                className="p-2 hover:bg-muted rounded-lg transition-colors duration-200"
                 data-testid="settings-button"
               >
-                <Settings className="w-5 h-5 text-gray-600" />
+                <Settings className="w-5 h-5 text-muted-foreground" />
               </Button>
             </div>
           </div>
@@ -69,10 +69,10 @@ export default function Dashboard() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-12">
+      <footer className="bg-card border-t border-border mt-12">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-muted-foreground">
               <span data-testid="last-updated">
                 Last updated: {new Date().toLocaleDateString('en-US')} at {new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
               </span>
@@ -82,7 +82,7 @@ export default function Dashboard() {
                 variant="ghost"
                 size="sm"
                 onClick={handleResetData}
-                className="text-sm text-gray-500 hover:text-dark-brown transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 data-testid="reset-data"
               >
                 <RotateCcw className="w-4 h-4 mr-1" />
@@ -92,7 +92,7 @@ export default function Dashboard() {
                 variant="ghost"
                 size="sm"
                 onClick={handleExportData}
-                className="text-sm text-gray-500 hover:text-dark-brown transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 data-testid="export-data"
               >
                 <Download className="w-4 h-4 mr-1" />

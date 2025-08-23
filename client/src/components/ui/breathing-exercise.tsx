@@ -123,11 +123,11 @@ export function BreathingExercise({ className }: BreathingExerciseProps) {
           )}
         </Button>
       </div>
-      <p className="text-gray-600 text-sm mb-4">
+      <p className="text-muted-foreground text-sm mb-4">
         Take a moment to center yourself with controlled breathing
       </p>
       
-      <div className="h-32 bg-light-accent rounded-lg flex flex-col items-center justify-center">
+      <div className="h-32 bg-muted rounded-lg flex flex-col items-center justify-center">
         <div 
           className={`w-16 h-16 bg-sky-blue rounded-full transition-transform duration-1000 ease-in-out ${getCircleScale()}`}
           data-testid="breathing-circle"
@@ -141,7 +141,7 @@ export function BreathingExercise({ className }: BreathingExerciseProps) {
               {count}
             </div>
             {cycle > 0 && (
-              <div className="text-sm text-gray-600" data-testid="breathing-cycle">
+              <div className="text-sm text-muted-foreground" data-testid="breathing-cycle">
                 Cycle {cycle}
               </div>
             )}

@@ -43,14 +43,14 @@ export function DailyPlanning() {
                   data-testid={`habit-checkbox-${habit.id}`}
                 />
                 <span className="flex-1">{habit.name}</span>
-                <span className="text-sm text-gray-500" data-testid={`habit-streak-${habit.id}`}>
+                <span className="text-sm text-muted-foreground" data-testid={`habit-streak-${habit.id}`}>
                   {habit.streak} day streak
                 </span>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => deleteHabit(habit.id)}
-                  className="p-1 hover:bg-red-100 hover:text-red-600 text-gray-400"
+                  className="p-1 hover:bg-destructive/10 hover:text-destructive text-muted-foreground"
                   data-testid={`habit-delete-${habit.id}`}
                 >
                   <Trash2 className="w-4 h-4" />
@@ -65,7 +65,7 @@ export function DailyPlanning() {
                   value={newHabitName}
                   onChange={(e) => setNewHabitName(e.target.value)}
                   placeholder="Enter habit name"
-                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-blue focus:border-transparent text-sm"
+                  className="flex-1 px-3 py-2 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-sm text-foreground"
                   onKeyPress={(e) => e.key === 'Enter' && handleAddHabit()}
                   autoFocus
                   data-testid="habit-input"
@@ -98,12 +98,12 @@ export function DailyPlanning() {
             <Textarea
               value={goals}
               onChange={(e) => updateGoals(e.target.value)}
-              className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-blue focus:border-transparent resize-none"
+              className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent resize-none text-foreground"
               rows={4}
               placeholder="What do you want to achieve today?"
               data-testid="daily-goals"
             />
-            <div className="flex justify-between text-sm text-gray-500">
+            <div className="flex justify-between text-sm text-muted-foreground">
               <span data-testid="goals-last-updated">
                 {lastUpdated ? `Last updated: ${lastUpdated}` : 'Not saved yet'}
               </span>
@@ -111,9 +111,9 @@ export function DailyPlanning() {
             </div>
             
             {yesterdaysGoals && (
-              <div className="pt-4 border-t border-gray-100">
-                <h4 className="text-sm font-medium text-gray-700 mb-2">Yesterday's Goals</h4>
-                <div className="bg-gray-50 p-3 rounded-lg text-sm text-gray-600" data-testid="yesterday-goals">
+              <div className="pt-4 border-t border-border">
+                <h4 className="text-sm font-medium text-foreground mb-2">Yesterday's Goals</h4>
+                <div className="bg-muted p-3 rounded-lg text-sm text-muted-foreground" data-testid="yesterday-goals">
                   {yesterdaysGoals}
                 </div>
               </div>
