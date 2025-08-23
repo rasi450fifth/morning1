@@ -384,17 +384,17 @@ export const getTodaysNeuroFact = (): NeuroFact => {
 
 export const artworks: Artwork[] = [
   {
-    title: "Classical Architecture Study",
-    artist: "Renaissance Period Inspiration",
-    description: "This architectural photograph captures the grandeur of classical design elements including arched windows, ornate stonework, and symmetrical composition. The interplay of light and shadow through the architectural features demonstrates the timeless principles of classical design that influenced Renaissance masters.",
-    location: "Classical Architecture Collection",
+    title: "Architectural Composition",
+    artist: "Contemporary Study",
+    description: "A carefully composed study exploring form, texture, and spatial relationships. This piece demonstrates how light, shadow, and geometric elements create visual harmony and depth, reflecting principles that have guided artists and architects throughout history.",
+    location: "Modern Art Collection",
     imageUrl: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
   },
   {
-    title: "Celestial Night Scene", 
-    artist: "Nature Photography",
-    description: "This stunning night sky photograph captures the ethereal beauty of stars and cosmic elements against a darkened landscape. The composition evokes the same sense of wonder and movement that inspired post-impressionist artists to explore the dynamic relationship between earth and sky.",
-    location: "Night Sky Photography Collection",
+    title: "Visual Study in Form", 
+    artist: "Modern Expression",
+    description: "An exploration of visual elements that captures the eye through composition, color, and texture. This piece invites contemplation of how artistic expression can transform ordinary subjects into extraordinary visual experiences that speak to universal themes of beauty and meaning.",
+    location: "Contemporary Collection",
     imageUrl: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
   }
 ];
