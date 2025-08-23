@@ -3,11 +3,22 @@ export interface WeatherData {
     temp: number;
     condition: string;
     icon: string;
+    high: number;
+    low: number;
+    humidity: number;
+    windSpeed: number;
+    windDirection: number;
   };
   forecast: Array<{
     name: string;
     temp: number;
+    high: number;
+    low: number;
+    humidity: number;
+    windSpeed: number;
+    windDirection: number;
     icon: string;
+    time: string;
   }>;
 }
 

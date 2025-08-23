@@ -5,7 +5,6 @@ import { getTodaysInnovation, getTodaysDesign, getTodaysInvention } from '@/lib/
 import { Lightbulb } from 'lucide-react';
 
 export function Innovation() {
-  const [innovationRevealed, setInnovationRevealed] = useState(false);
   const innovation = getTodaysInnovation();
   const design = getTodaysDesign();
   const invention = getTodaysInvention();
@@ -24,21 +23,9 @@ export function Innovation() {
                 {innovation.challenge}
               </p>
             </div>
-            <Button
-              onClick={() => setInnovationRevealed(true)}
-              variant="ghost"
-              className="text-sky-blue text-xs font-medium hover:text-opacity-80"
-              disabled={innovationRevealed}
-              data-testid="innovation-reveal"
-            >
-              <Lightbulb className="w-4 h-4 mr-1" />
-              {innovationRevealed ? 'Solution Revealed' : 'Show Engineering Solution'}
-            </Button>
-            {innovationRevealed && (
-              <div className="bg-sky-blue bg-opacity-10 p-3 rounded-lg text-xs text-gray-700" data-testid="innovation-solution">
-                {innovation.solution}
-              </div>
-            )}
+            <div className="bg-sky-blue bg-opacity-10 p-3 rounded-lg text-xs text-gray-700" data-testid="innovation-solution">
+              <strong>Solution:</strong> {innovation.solution}
+            </div>
           </div>
         </Card>
 

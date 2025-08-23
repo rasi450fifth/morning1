@@ -8,7 +8,6 @@ export function InteractiveChallenges() {
   const [geographyRevealed, setGeographyRevealed] = useState(false);
   const [chessRevealed, setChessRevealed] = useState(false);
   const [logicRevealed, setLogicRevealed] = useState(false);
-  const [engineeringRevealed, setEngineeringRevealed] = useState(false);
   
   const puzzle = getTodaysPuzzle();
 
@@ -122,22 +121,11 @@ export function InteractiveChallenges() {
               </h4>
             </div>
             <p className="text-sm text-gray-600 text-center">How does this device measure temperature so accurately?</p>
-            <Button
-              onClick={() => setEngineeringRevealed(true)}
-              variant="outline"
-              className="w-full text-sage-green border-sage-green hover:bg-sage-green hover:text-white"
-              disabled={engineeringRevealed}
-              data-testid="engineering-reveal"
-            >
-              {engineeringRevealed ? 'Mechanism Revealed' : 'Reveal Mechanism'}
-            </Button>
-            {engineeringRevealed && (
-              <div className="bg-sage-green bg-opacity-10 p-3 rounded-lg text-xs text-gray-700" data-testid="engineering-solution">
-                Mercury expands predictably when heated and contracts when cooled. The narrow glass tube amplifies 
-                this tiny volume change into visible movement. The uniform expansion rate allows precise calibration 
-                against known temperature points (water freezing/boiling).
-              </div>
-            )}
+            <div className="bg-sage-green bg-opacity-10 p-3 rounded-lg text-xs text-gray-700" data-testid="engineering-solution">
+              Mercury expands predictably when heated and contracts when cooled. The narrow glass tube amplifies 
+              this tiny volume change into visible movement. The uniform expansion rate allows precise calibration 
+              against known temperature points (water freezing/boiling).
+            </div>
           </div>
         </Card>
       </div>

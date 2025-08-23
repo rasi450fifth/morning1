@@ -67,7 +67,7 @@ export function MorningCentering() {
           )}
           
           {weather && (
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-2xl font-semibold" data-testid="current-temp">
                   {weather.current.temp}°F
@@ -76,12 +76,39 @@ export function MorningCentering() {
                   {weather.current.condition}
                 </span>
               </div>
-              <div className="grid grid-cols-3 gap-3 pt-3 border-t border-gray-100">
+              
+              {/* Current Conditions Detail */}
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span className="text-gray-600">High: </span>
+                  <span className="font-medium">{weather.current.high}°F</span>
+                </div>
+                <div>
+                  <span className="text-gray-600">Low: </span>
+                  <span className="font-medium">{weather.current.low}°F</span>
+                </div>
+                <div>
+                  <span className="text-gray-600">Humidity: </span>
+                  <span className="font-medium">{weather.current.humidity}%</span>
+                </div>
+                <div>
+                  <span className="text-gray-600">Wind: </span>
+                  <span className="font-medium">{weather.current.windSpeed} mph {weather.current.windDirection}°</span>
+                </div>
+              </div>
+              
+              {/* Forecast */}
+              <div className="grid grid-cols-2 gap-4 pt-3 border-t border-gray-100">
                 {weather.forecast.map((day, index) => (
-                  <div key={index} className="text-center" data-testid={`forecast-day-${index}`}>
-                    <div className="text-sm font-medium text-gray-600">{day.name}</div>
+                  <div key={index} className="text-center p-3 bg-gray-50 rounded-lg" data-testid={`forecast-day-${index}`}>
+                    <div className="text-sm font-medium text-gray-700 mb-2">{day.name}</div>
                     {getWeatherIcon(day.icon)}
-                    <div className="text-sm">{day.temp}°</div>
+                    <div className="text-sm mt-2 space-y-1">
+                      <div className="font-medium">{day.temp}°F</div>
+                      <div className="text-xs text-gray-500">H: {day.high}° L: {day.low}°</div>
+                      <div className="text-xs text-gray-500">💧 {day.humidity}%</div>
+                      <div className="text-xs text-gray-500">💨 {day.windSpeed} mph</div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -90,16 +117,14 @@ export function MorningCentering() {
         </Card>
 
         {/* Prayer Times */}
-        <Card className="dashboard-card relative overflow-hidden">
-          <div 
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1591604021695-0c52aecea7b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }}
-          />
-          <div className="relative z-10 bg-white bg-opacity-90 p-6 rounded-2xl">
+        <Card className="dashboard-card relative overflow-hidden"
+              style={{
+                backgroundImage: 'url(https://images.unsplash.com/photo-1591604021695-0c52aecea7b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}>
+          <div className="relative z-10 bg-white bg-opacity-95 p-6 rounded-2xl shadow-sm">
             <h3 className="subsection-title mb-4 text-dark-brown font-semibold">Prayer Times Today</h3>
           
           {prayerLoading && (

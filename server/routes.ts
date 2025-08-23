@@ -37,16 +37,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
         current: {
           temp: Math.round(data.main.temp),
           condition: data.weather[0].description,
-          icon: data.weather[0].icon
+          icon: data.weather[0].icon,
+          high: Math.round(data.main.temp_max),
+          low: Math.round(data.main.temp_min),
+          humidity: data.main.humidity,
+          windSpeed: Math.round(data.wind?.speed || 0),
+          windDirection: data.wind?.deg || 0
         },
-        forecast: forecastData ? forecastData.list.slice(0, 3).map((item: any, index: number) => ({
-          name: ['Today', 'Tomorrow', 'Day 3'][index],
+        forecast: forecastData ? forecastData.list.slice(0, 2).map((item: any, index: number) => ({
+          name: ['Today', 'Tomorrow'][index],
           temp: Math.round(item.main.temp),
-          icon: item.weather[0].icon
+          high: Math.round(item.main.temp_max),
+          low: Math.round(item.main.temp_min),
+          humidity: item.main.humidity,
+          windSpeed: Math.round(item.wind?.speed || 0),
+          windDirection: item.wind?.deg || 0,
+          icon: item.weather[0].icon,
+          time: new Date(item.dt * 1000).toLocaleTimeString('en-US', { hour: 'numeric' })
         })) : [
-          { name: 'Wed', temp: 45, icon: 'clear' },
-          { name: 'Thu', temp: 38, icon: 'rain' },
-          { name: 'Fri', temp: 32, icon: 'snow' }
+          { name: 'Today', temp: 45, high: 50, low: 40, humidity: 60, windSpeed: 8, windDirection: 180, icon: 'clear', time: '2:00 PM' },
+          { name: 'Tomorrow', temp: 38, high: 42, low: 35, humidity: 70, windSpeed: 12, windDirection: 225, icon: 'rain', time: '3:00 PM' }
         ]
       };
       
@@ -111,7 +121,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
             { title: "International space station receives new crew members", url: "https://www.bbc.com/news" },
             { title: "Diplomatic talks continue over regional trade agreements", url: "https://www.bbc.com/news" },
             { title: "Global health initiative launches vaccination program", url: "https://www.bbc.com/news" },
-            { title: "Technology partnership formed between emerging economies", url: "https://www.bbc.com/news" }
+            { title: "Technology partnership formed between emerging economies", url: "https://www.bbc.com/news" },
+            { title: "Olympic committee announces preparations for upcoming games", url: "https://www.bbc.com/news" },
+            { title: "UNESCO designates new world heritage sites", url: "https://www.bbc.com/news" },
+            { title: "International cooperation treaty signed on ocean conservation", url: "https://www.bbc.com/news" }
           ],
           us: [
             { title: "Infrastructure bill allocates funds for renewable energy", url: "https://www.bbc.com/news" },
@@ -120,7 +133,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
             { title: "Federal reserve considers new monetary policy measures", url: "https://www.bbc.com/news" },
             { title: "Supreme Court hears case on digital privacy rights", url: "https://www.bbc.com/news" },
             { title: "National parks service expands conservation programs", url: "https://www.bbc.com/news" },
-            { title: "Healthcare system improvements show positive outcomes", url: "https://www.bbc.com/news" }
+            { title: "Healthcare system improvements show positive outcomes", url: "https://www.bbc.com/news" },
+            { title: "Border security measures updated following bipartisan agreement", url: "https://www.bbc.com/news" },
+            { title: "Veterans affairs department expands mental health services", url: "https://www.bbc.com/news" },
+            { title: "Transportation infrastructure receives major upgrade funding", url: "https://www.bbc.com/news" }
           ],
           business: [
             { title: "Electric vehicle sales surge in Q4 reports", url: "https://www.bbc.com/news" },
@@ -129,7 +145,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
             { title: "Renewable energy companies report record growth", url: "https://www.bbc.com/news" },
             { title: "Artificial intelligence market expands globally", url: "https://www.bbc.com/news" },
             { title: "Supply chain innovations reduce delivery times", url: "https://www.bbc.com/news" },
-            { title: "Cryptocurrency regulations updated for institutional investors", url: "https://www.bbc.com/news" }
+            { title: "Cryptocurrency regulations updated for institutional investors", url: "https://www.bbc.com/news" },
+            { title: "Manufacturing sector shows strong quarterly performance", url: "https://www.bbc.com/news" },
+            { title: "Real estate market stabilizes after recent fluctuations", url: "https://www.bbc.com/news" },
+            { title: "Small business lending programs expand nationwide", url: "https://www.bbc.com/news" }
           ]
         };
         
@@ -153,7 +172,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const result = responses[i];
         if (result.status === 'fulfilled' && result.value.ok) {
           const data = await result.value.json();
-          const articles = data.articles?.slice(0, 7).map((article: any) => ({
+          const articles = data.articles?.slice(0, 10).map((article: any) => ({
             title: article.title,
             url: article.url
           })) || [];
@@ -164,7 +183,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Add some international news (can be expanded to use separate API call)
-      newsData.international = newsData.us.slice(0, 7);
+      newsData.international = newsData.us.slice(0, 10);
       
       res.json(newsData);
     } catch (error) {
