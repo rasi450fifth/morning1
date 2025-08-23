@@ -4,16 +4,6 @@ import { Button } from '@/components/ui/button';
 import { MorningCentering } from '@/components/dashboard/MorningCentering';
 import { DailyPlanning } from '@/components/dashboard/DailyPlanning';
 import { NewsSection } from '@/components/dashboard/NewsSection';
-import { LanguageLearning } from '@/components/dashboard/LanguageLearning';
-import { HistoricalKnowledge } from '@/components/dashboard/HistoricalKnowledge';
-import { ScienceMath } from '@/components/dashboard/ScienceMath';
-import { ArtsCulture } from '@/components/dashboard/ArtsCulture';
-import { InteractiveChallenges } from '@/components/dashboard/InteractiveChallenges';
-import { AnalyticalThinking } from '@/components/dashboard/AnalyticalThinking';
-import { Innovation } from '@/components/dashboard/Innovation';
-import { CulturalInsights } from '@/components/dashboard/CulturalInsights';
-import { NaturePractical } from '@/components/dashboard/NaturePractical';
-import { Closing } from '@/components/dashboard/Closing';
 
 export default function Dashboard() {
   const currentDate = new Date().toLocaleDateString('en-US', { 
@@ -78,16 +68,6 @@ export default function Dashboard() {
         <MorningCentering />
         <DailyPlanning />
         <NewsSection />
-        <LanguageLearning />
-        <HistoricalKnowledge />
-        <ScienceMath />
-        <ArtsCulture />
-        <InteractiveChallenges />
-        <AnalyticalThinking />
-        <Innovation />
-        <CulturalInsights />
-        <NaturePractical />
-        <Closing />
       </main>
 
       {/* Footer */}
