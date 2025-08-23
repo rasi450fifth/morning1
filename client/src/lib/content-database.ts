@@ -384,17 +384,17 @@ export const getTodaysNeuroFact = (): NeuroFact => {
 
 export const artworks: Artwork[] = [
   {
-    title: "The School of Athens",
-    artist: "Raphael, 1509-1511",
-    description: "This Renaissance fresco represents philosophy and is considered one of the greatest paintings in Western art. Located in the Vatican's Apostolic Palace, it depicts classical philosophers including Plato and Aristotle in an idealized ancient setting. The perfect perspective and architectural grandeur exemplify High Renaissance ideals of harmony, proportion, and the synthesis of Christian and classical traditions.",
-    location: "Vatican Museums, Rome",
+    title: "Classical Architecture Study",
+    artist: "Renaissance Period Inspiration",
+    description: "This architectural photograph captures the grandeur of classical design elements including arched windows, ornate stonework, and symmetrical composition. The interplay of light and shadow through the architectural features demonstrates the timeless principles of classical design that influenced Renaissance masters.",
+    location: "Classical Architecture Collection",
     imageUrl: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
   },
   {
-    title: "The Starry Night", 
-    artist: "Vincent van Gogh, 1889",
-    description: "This post-impressionist masterpiece depicts a swirling night sky over a village. Van Gogh painted it while in an asylum, and it represents his unique vision of movement and energy in nature. The painting's dynamic brushstrokes and vivid colors revolutionized how artists could express emotion through technique.",
-    location: "Museum of Modern Art, New York",
+    title: "Celestial Night Scene", 
+    artist: "Nature Photography",
+    description: "This stunning night sky photograph captures the ethereal beauty of stars and cosmic elements against a darkened landscape. The composition evokes the same sense of wonder and movement that inspired post-impressionist artists to explore the dynamic relationship between earth and sky.",
+    location: "Night Sky Photography Collection",
     imageUrl: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
   }
 ];
