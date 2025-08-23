@@ -384,18 +384,39 @@ export const getTodaysNeuroFact = (): NeuroFact => {
 
 export const artworks: Artwork[] = [
   {
-    title: "Architectural Composition",
-    artist: "Contemporary Study",
-    description: "A carefully composed study exploring form, texture, and spatial relationships. This piece demonstrates how light, shadow, and geometric elements create visual harmony and depth, reflecting principles that have guided artists and architects throughout history.",
-    location: "Modern Art Collection",
-    imageUrl: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+    title: "The Starry Night",
+    artist: "Vincent van Gogh, 1889",
+    description: "This post-impressionist masterpiece depicts a swirling night sky over a village. Van Gogh painted it while in an asylum, and it revolutionized how artists could express emotion through dynamic brushstrokes and vivid colors. The painting demonstrates van Gogh's unique vision of movement and energy in nature, making it one of the most recognized artworks in the world.",
+    location: "Museum of Modern Art, New York",
+    imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
   },
   {
-    title: "Visual Study in Form", 
-    artist: "Modern Expression",
-    description: "An exploration of visual elements that captures the eye through composition, color, and texture. This piece invites contemplation of how artistic expression can transform ordinary subjects into extraordinary visual experiences that speak to universal themes of beauty and meaning.",
-    location: "Contemporary Collection",
-    imageUrl: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+    title: "The Great Wave off Kanagawa",
+    artist: "Katsushika Hokusai, 1831",
+    description: "This iconic Japanese woodblock print from the series 'Thirty-six Views of Mount Fuji' represents the power of nature and human resilience. Hokusai's masterful use of Prussian blue and dynamic composition influenced Western impressionists and remains one of the most recognizable images in art history. The wave symbolizes both destruction and beauty in Japanese aesthetics.",
+    location: "Various Collections Worldwide",
+    imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+  },
+  {
+    title: "Girl with a Pearl Earring",
+    artist: "Johannes Vermeer, 1665",
+    description: "Often called the 'Mona Lisa of the North,' this Dutch Baroque painting showcases Vermeer's masterful use of light and color. The mysterious subject's direct gaze and the luminous pearl earring demonstrate the artist's ability to capture intimate human moments. This work exemplifies the Dutch Golden Age's focus on domestic scenes and optical effects.",
+    location: "Mauritshuis, The Hague",
+    imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+  },
+  {
+    title: "The School of Athens",
+    artist: "Raphael, 1509-1511",
+    description: "This Renaissance fresco represents the pinnacle of High Renaissance art and humanist philosophy. Located in the Vatican, it depicts great philosophers like Plato and Aristotle in an idealized ancient setting. Raphael's perfect perspective and architectural grandeur symbolize the synthesis of Christian and classical traditions that defined Renaissance thinking.",
+    location: "Vatican Museums, Rome",
+    imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+  },
+  {
+    title: "Las Meninas",
+    artist: "Diego Velázquez, 1656",
+    description: "This complex Spanish Baroque painting is considered one of the most analyzed works in Western art history. Velázquez creates a 'painting within a painting' that questions reality and representation. The work's sophisticated use of perspective, light, and the artist's self-inclusion challenged traditional portrait conventions and influenced centuries of artists including Picasso and Dalí.",
+    location: "Museo del Prado, Madrid",
+    imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
   }
 ];
 
