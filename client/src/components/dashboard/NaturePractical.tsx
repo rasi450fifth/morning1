@@ -37,7 +37,6 @@ export function NaturePractical() {
             </div>
           </div>
           <div className="space-y-4">
-            <h4 className="font-semibold text-dark-brown">Seasonal Tasks</h4>
             <div className="space-y-3">
               <div className="bg-sage-green bg-opacity-10 p-3 rounded-lg" data-testid="task-planning">
                 <h5 className="font-medium text-sage-green text-sm">Plan Your Garden</h5>

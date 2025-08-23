@@ -3,6 +3,7 @@ import { Card } from '@/components/ui/card';
 import { BreathingExercise } from '@/components/ui/breathing-exercise';
 import { fetchWeather, fetchPrayerTimes } from '@/lib/api-services';
 import { Cloud, CloudRain, Snowflake, Sun } from 'lucide-react';
+import mosqueImage from '@assets/image_1755961309570.png';
 
 export function MorningCentering() {
   const { data: weather, isLoading: weatherLoading, error: weatherError } = useQuery({
@@ -28,6 +29,12 @@ export function MorningCentering() {
   const getPrayerColor = (index: number) => {
     const colors = ['text-sage-green', 'text-sky-blue', 'text-coral-pink', 'text-soft-purple', 'text-sage-green'];
     return colors[index % colors.length];
+  };
+
+  const getWindDirection = (degrees: number): string => {
+    const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+    const index = Math.round(degrees / 22.5) % 16;
+    return directions[index];
   };
 
   return (
@@ -96,7 +103,7 @@ export function MorningCentering() {
                   </div>
                   <div>
                     <span className="text-gray-600">Wind: </span>
-                    <span className="font-medium">{weather.current.windSpeed} mph at {weather.current.windHighTime}</span>
+                    <span className="font-medium">{weather.current.windSpeed} mph {getWindDirection(weather.current.windDirection)} at {weather.current.windHighTime}</span>
                   </div>
                 </div>
               </div>
@@ -112,7 +119,7 @@ export function MorningCentering() {
                       <div className="text-xs text-gray-500">H: {weather.forecast[0].high}° at {weather.forecast[0].highTime}</div>
                       <div className="text-xs text-gray-500">L: {weather.forecast[0].low}° at {weather.forecast[0].lowTime}</div>
                       <div className="text-xs text-gray-500">💧 H: {weather.forecast[0].humidity}% at {weather.forecast[0].humidityHighTime}</div>
-                      <div className="text-xs text-gray-500">💨 {weather.forecast[0].windSpeed} mph at {weather.forecast[0].windHighTime}</div>
+                      <div className="text-xs text-gray-500">💨 {weather.forecast[0].windSpeed} mph {getWindDirection(weather.forecast[0].windDirection)} at {weather.forecast[0].windHighTime}</div>
                     </div>
                   </div>
                 </div>
@@ -122,14 +129,8 @@ export function MorningCentering() {
         </Card>
 
         {/* Prayer Times */}
-        <Card className="dashboard-card relative overflow-hidden"
-              style={{
-                backgroundImage: 'url(https://images.unsplash.com/photo-1591604021695-0c52aecea7b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
-              }}>
-          <div className="relative z-10 bg-white bg-opacity-75 backdrop-blur-sm p-6 rounded-2xl shadow-sm">
+        <Card className="dashboard-card">
+          <div className="p-6">
             <h3 className="subsection-title mb-4 text-dark-brown font-semibold">Prayer Times Today</h3>
           
           {prayerLoading && (
@@ -161,6 +162,15 @@ export function MorningCentering() {
               ))}
             </div>
           )}
+          
+          {/* Mosque Image */}
+          <div className="mt-4 border-t border-gray-100 pt-4">
+            <img 
+              src={mosqueImage}
+              alt="Green dome of Prophet's Mosque in Medina through ornate window"
+              className="w-full h-32 object-cover rounded-lg"
+            />
+          </div>
           </div>
         </Card>
       </div>

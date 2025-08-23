@@ -29,8 +29,7 @@ export function BreathingExercise({ className }: BreathingExerciseProps) {
       setCount((prev) => {
         if (prev > 1) return prev - 1;
         
-        // Move to next phase and get duration
-        let nextPhaseDuration = 6; // default
+        // Move to next phase when count reaches 0
         setPhase((currentPhase) => {
           let nextPhase: 'inhale' | 'hold' | 'exhale' | 'pause';
           switch (currentPhase) {
@@ -50,16 +49,26 @@ export function BreathingExercise({ className }: BreathingExerciseProps) {
             default:
               nextPhase = 'inhale';
           }
-          nextPhaseDuration = getPhaseDuration(nextPhase);
           return nextPhase;
         });
         
-        return nextPhaseDuration;
+        // Return the duration for the next phase when count reaches 0
+        const nextPhase = (() => {
+          switch (phase) {
+            case 'inhale': return 'hold';
+            case 'hold': return 'exhale';
+            case 'exhale': return 'pause';
+            case 'pause': return 'inhale';
+            default: return 'inhale';
+          }
+        })();
+        
+        return getPhaseDuration(nextPhase);
       });
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isActive]);
+  }, [isActive, phase]);
 
   const startExercise = () => {
     setIsActive(true);
