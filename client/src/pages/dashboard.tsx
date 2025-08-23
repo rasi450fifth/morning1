@@ -3,7 +3,6 @@ import { Settings, RotateCcw, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MorningCentering } from '@/components/dashboard/MorningCentering';
 import { DailyPlanning } from '@/components/dashboard/DailyPlanning';
-import { NewsSection } from '@/components/dashboard/NewsSection';
 
 export default function Dashboard() {
   const currentDate = new Date().toLocaleDateString('en-US', { 
@@ -67,7 +66,6 @@ export default function Dashboard() {
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-8">
         <MorningCentering />
         <DailyPlanning />
-        <NewsSection />
       </main>
 
       {/* Footer */}
