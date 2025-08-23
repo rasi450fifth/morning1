@@ -44,6 +44,8 @@ export interface MathConcept {
   title: string;
   explanation: string;
   formula?: string;
+  simpleExplanation: string;
+  detailedExplanation: string;
 }
 
 export interface NeuroFact {
@@ -299,17 +301,23 @@ export const mathConcepts: MathConcept[] = [
   {
     title: "The Fibonacci Spiral",
     explanation: "The Fibonacci sequence (0, 1, 1, 2, 3, 5, 8, 13...) appears everywhere in nature: flower petals, pinecones, shells, and hurricanes. When you draw squares with sides equal to Fibonacci numbers and connect them with curves, you get the golden spiral.",
-    formula: "φ = (1 + √5) / 2 ≈ 1.618"
+    formula: "φ = (1 + √5) / 2 ≈ 1.618",
+    simpleExplanation: "It's a special pattern of numbers where you add the two previous numbers to get the next one (like 1+1=2, 1+2=3, 2+3=5). This pattern shows up everywhere in nature, like the spirals in sunflowers and seashells!",
+    detailedExplanation: "The Fibonacci sequence demonstrates how mathematical patterns emerge in biological systems through optimal growth processes. The ratio between consecutive Fibonacci numbers approaches the golden ratio (φ ≈ 1.618), which appears in nautilus shells, galaxy spirals, and DNA structure due to its mathematical efficiency in space utilization and structural stability."
   },
   {
     title: "Euler's Identity",
     explanation: "Often called the most beautiful equation in mathematics, it elegantly connects five fundamental mathematical constants: e, i, π, 1, and 0. It demonstrates the deep relationship between exponential and trigonometric functions.",
-    formula: "e^(iπ) + 1 = 0"
+    formula: "e^(iπ) + 1 = 0",
+    simpleExplanation: "This equation combines five of the most important numbers in math into one beautiful formula. It's like finding out that different pieces of a puzzle all fit together perfectly!",
+    detailedExplanation: "Euler's identity reveals the profound connection between exponential growth (e), circular motion (π), imaginary numbers (i), and the fundamental concepts of something (1) and nothing (0). It bridges algebra, geometry, and analysis, showing how complex exponential functions relate to trigonometric functions through the complex plane."
   },
   {
     title: "The Monty Hall Problem",
     explanation: "A probability puzzle where you're more likely to win by switching doors (2/3 chance) than sticking with your first choice (1/3 chance). This counterintuitive result stumped even professional mathematicians initially.",
-    formula: "P(win by switching) = 2/3"
+    formula: "P(win by switching) = 2/3",
+    simpleExplanation: "Imagine you're on a game show with three doors. Behind one door is a prize, behind the others are nothing. After you pick a door, the host opens one of the remaining doors that has nothing behind it. You should always switch to the other door because it gives you a better chance of winning!",
+    detailedExplanation: "The Monty Hall problem illustrates conditional probability and how additional information changes probability distributions. Initially, each door has a 1/3 probability. When the host reveals a non-winning door, the probability doesn't redistribute equally—the remaining unopened door inherits the combined probability of the two doors you didn't initially choose, making switching the optimal strategy."
   }
 ];
 

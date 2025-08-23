@@ -12,12 +12,6 @@ export function NaturePractical() {
         <h3 className="subsection-title sage-green-accent mb-4">{currentMonth} in Virginia Gardens</h3>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-4">
-            <img 
-              src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400"
-              alt="Winter garden with frost and dormant plants"
-              className="rounded-lg w-full h-40 object-cover"
-              data-testid="nature-image"
-            />
             <div className="space-y-2">
               <h4 className="font-semibold text-dark-brown">What's Happening Now</h4>
               <ul className="text-sm text-gray-700 space-y-1">
