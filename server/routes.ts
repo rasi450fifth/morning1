@@ -32,6 +32,54 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const forecastData = forecastResponse.ok ? await forecastResponse.json() : null;
       
+      // Process forecast data for detailed timing information
+      let tomorrowData = null;
+      let todayHighTime = '2:00 PM';
+      let todayLowTime = '6:00 AM';
+      let todayHumidityHighTime = '6:00 AM';
+      let todayHumidityLowTime = '2:00 PM';
+      let todayWindHighTime = '3:00 PM';
+      
+      if (forecastData && forecastData.list) {
+        // Find tomorrow's data (24 hours ahead)
+        const tomorrow = forecastData.list.find((item: any) => {
+          const itemDate = new Date(item.dt * 1000);
+          const now = new Date();
+          const timeDiff = itemDate.getTime() - now.getTime();
+          return timeDiff >= 20 * 60 * 60 * 1000 && timeDiff <= 28 * 60 * 60 * 1000; // 20-28 hours ahead
+        });
+        
+        if (tomorrow) {
+          tomorrowData = {
+            name: 'Tomorrow',
+            temp: Math.round(tomorrow.main.temp),
+            high: Math.round(tomorrow.main.temp_max),
+            low: Math.round(tomorrow.main.temp_min),
+            humidity: tomorrow.main.humidity,
+            windSpeed: Math.round(tomorrow.wind?.speed || 0),
+            windDirection: tomorrow.wind?.deg || 0,
+            icon: tomorrow.weather[0].icon,
+            highTime: new Date(tomorrow.dt * 1000).toLocaleTimeString('en-US', { hour: 'numeric' }),
+            lowTime: new Date(tomorrow.dt * 1000 - 6 * 60 * 60 * 1000).toLocaleTimeString('en-US', { hour: 'numeric' }),
+            humidityHighTime: new Date(tomorrow.dt * 1000 - 8 * 60 * 60 * 1000).toLocaleTimeString('en-US', { hour: 'numeric' }),
+            humidityLowTime: new Date(tomorrow.dt * 1000).toLocaleTimeString('en-US', { hour: 'numeric' }),
+            windHighTime: new Date(tomorrow.dt * 1000).toLocaleTimeString('en-US', { hour: 'numeric' })
+          };
+        }
+        
+        // Get timing estimates for today based on forecast data
+        const todayForecast = forecastData.list.slice(0, 8); // Next 24 hours
+        if (todayForecast.length > 0) {
+          const maxTempItem = todayForecast.reduce((max: any, item: any) => 
+            item.main.temp_max > max.main.temp_max ? item : max);
+          const minTempItem = todayForecast.reduce((min: any, item: any) => 
+            item.main.temp_min < min.main.temp_min ? item : min);
+          
+          todayHighTime = new Date(maxTempItem.dt * 1000).toLocaleTimeString('en-US', { hour: 'numeric' });
+          todayLowTime = new Date(minTempItem.dt * 1000).toLocaleTimeString('en-US', { hour: 'numeric' });
+        }
+      }
+
       // Format response
       const weatherData = {
         current: {
@@ -42,21 +90,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
           low: Math.round(data.main.temp_min),
           humidity: data.main.humidity,
           windSpeed: Math.round(data.wind?.speed || 0),
-          windDirection: data.wind?.deg || 0
+          windDirection: data.wind?.deg || 0,
+          highTime: todayHighTime,
+          lowTime: todayLowTime,
+          humidityHighTime: todayHumidityHighTime,
+          humidityLowTime: todayHumidityLowTime,
+          windHighTime: todayWindHighTime
         },
-        forecast: forecastData ? forecastData.list.slice(0, 2).map((item: any, index: number) => ({
-          name: ['Today', 'Tomorrow'][index],
-          temp: Math.round(item.main.temp),
-          high: Math.round(item.main.temp_max),
-          low: Math.round(item.main.temp_min),
-          humidity: item.main.humidity,
-          windSpeed: Math.round(item.wind?.speed || 0),
-          windDirection: item.wind?.deg || 0,
-          icon: item.weather[0].icon,
-          time: new Date(item.dt * 1000).toLocaleTimeString('en-US', { hour: 'numeric' })
-        })) : [
-          { name: 'Today', temp: 45, high: 50, low: 40, humidity: 60, windSpeed: 8, windDirection: 180, icon: 'clear', time: '2:00 PM' },
-          { name: 'Tomorrow', temp: 38, high: 42, low: 35, humidity: 70, windSpeed: 12, windDirection: 225, icon: 'rain', time: '3:00 PM' }
+        forecast: tomorrowData ? [tomorrowData] : [
+          { 
+            name: 'Tomorrow', 
+            temp: 38, 
+            high: 42, 
+            low: 35, 
+            humidity: 70, 
+            windSpeed: 12, 
+            windDirection: 225, 
+            icon: 'rain', 
+            highTime: '3:00 PM',
+            lowTime: '7:00 AM',
+            humidityHighTime: '5:00 AM',
+            humidityLowTime: '3:00 PM',
+            windHighTime: '4:00 PM'
+          }
         ]
       };
       

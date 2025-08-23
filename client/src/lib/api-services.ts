@@ -8,6 +8,11 @@ export interface WeatherData {
     humidity: number;
     windSpeed: number;
     windDirection: number;
+    highTime: string;
+    lowTime: string;
+    humidityHighTime: string;
+    humidityLowTime: string;
+    windHighTime: string;
   };
   forecast: Array<{
     name: string;
@@ -18,7 +23,11 @@ export interface WeatherData {
     windSpeed: number;
     windDirection: number;
     icon: string;
-    time: string;
+    highTime: string;
+    lowTime: string;
+    humidityHighTime: string;
+    humidityLowTime: string;
+    windHighTime: string;
   }>;
 }
 

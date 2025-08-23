@@ -78,40 +78,45 @@ export function MorningCentering() {
               </div>
               
               {/* Current Conditions Detail */}
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <span className="text-gray-600">High: </span>
-                  <span className="font-medium">{weather.current.high}°F</span>
+              <div className="space-y-3 text-sm">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <span className="text-gray-600">High: </span>
+                    <span className="font-medium">{weather.current.high}°F at {weather.current.highTime}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Low: </span>
+                    <span className="font-medium">{weather.current.low}°F at {weather.current.lowTime}</span>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-gray-600">Low: </span>
-                  <span className="font-medium">{weather.current.low}°F</span>
-                </div>
-                <div>
-                  <span className="text-gray-600">Humidity: </span>
-                  <span className="font-medium">{weather.current.humidity}%</span>
-                </div>
-                <div>
-                  <span className="text-gray-600">Wind: </span>
-                  <span className="font-medium">{weather.current.windSpeed} mph {weather.current.windDirection}°</span>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <span className="text-gray-600">Humidity: </span>
+                    <span className="font-medium">{weather.current.humidity}%</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Wind: </span>
+                    <span className="font-medium">{weather.current.windSpeed} mph at {weather.current.windHighTime}</span>
+                  </div>
                 </div>
               </div>
               
-              {/* Forecast */}
-              <div className="grid grid-cols-2 gap-4 pt-3 border-t border-gray-100">
-                {weather.forecast.map((day, index) => (
-                  <div key={index} className="text-center p-3 bg-gray-50 rounded-lg" data-testid={`forecast-day-${index}`}>
-                    <div className="text-sm font-medium text-gray-700 mb-2">{day.name}</div>
-                    {getWeatherIcon(day.icon)}
+              {/* Tomorrow's Forecast */}
+              {weather.forecast.length > 0 && (
+                <div className="pt-3 border-t border-gray-100">
+                  <div className="text-center p-3 bg-gray-50 rounded-lg" data-testid="forecast-tomorrow">
+                    <div className="text-sm font-medium text-gray-700 mb-2">{weather.forecast[0].name}</div>
+                    {getWeatherIcon(weather.forecast[0].icon)}
                     <div className="text-sm mt-2 space-y-1">
-                      <div className="font-medium">{day.temp}°F</div>
-                      <div className="text-xs text-gray-500">H: {day.high}° L: {day.low}°</div>
-                      <div className="text-xs text-gray-500">💧 {day.humidity}%</div>
-                      <div className="text-xs text-gray-500">💨 {day.windSpeed} mph</div>
+                      <div className="font-medium">{weather.forecast[0].temp}°F</div>
+                      <div className="text-xs text-gray-500">H: {weather.forecast[0].high}° at {weather.forecast[0].highTime}</div>
+                      <div className="text-xs text-gray-500">L: {weather.forecast[0].low}° at {weather.forecast[0].lowTime}</div>
+                      <div className="text-xs text-gray-500">💧 H: {weather.forecast[0].humidity}% at {weather.forecast[0].humidityHighTime}</div>
+                      <div className="text-xs text-gray-500">💨 {weather.forecast[0].windSpeed} mph at {weather.forecast[0].windHighTime}</div>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              )}
             </div>
           )}
         </Card>
@@ -124,7 +129,7 @@ export function MorningCentering() {
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat'
               }}>
-          <div className="relative z-10 bg-white bg-opacity-95 p-6 rounded-2xl shadow-sm">
+          <div className="relative z-10 bg-white bg-opacity-75 backdrop-blur-sm p-6 rounded-2xl shadow-sm">
             <h3 className="subsection-title mb-4 text-dark-brown font-semibold">Prayer Times Today</h3>
           
           {prayerLoading && (

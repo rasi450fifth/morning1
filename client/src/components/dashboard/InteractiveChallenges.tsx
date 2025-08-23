@@ -73,9 +73,9 @@ export function InteractiveChallenges() {
               {chessRevealed ? 'Solution Revealed' : 'Show Best Move'}
             </Button>
             {chessRevealed && (
-              <div className="bg-coral-pink bg-opacity-10 p-3 rounded-lg" data-testid="chess-solution">
-                <div className="font-semibold text-coral-pink">Best Move: Qh5+</div>
-                <p className="text-xs text-gray-700">This creates a fork, attacking both the king and rook</p>
+              <div className="bg-coral-pink bg-opacity-20 p-3 rounded-lg" data-testid="chess-solution">
+                <div className="font-semibold text-white">Best Move: Qh5+</div>
+                <p className="text-xs text-gray-100">This creates a fork, attacking both the king and rook</p>
               </div>
             )}
           </div>

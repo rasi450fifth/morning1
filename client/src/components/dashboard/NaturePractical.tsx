@@ -47,9 +47,9 @@ export function NaturePractical() {
                 <h5 className="font-medium text-sky-blue text-sm">Wildlife Support</h5>
                 <p className="text-xs text-gray-600">Keep bird feeders full and provide unfrozen water sources for winter wildlife.</p>
               </div>
-              <div className="bg-coral-pink bg-opacity-10 p-3 rounded-lg" data-testid="task-indoor">
-                <h5 className="font-medium text-coral-pink text-sm">Indoor Plants</h5>
-                <p className="text-xs text-gray-600">Reduce watering and fertilizing. Most houseplants are dormant now.</p>
+              <div className="bg-coral-pink bg-opacity-20 p-3 rounded-lg" data-testid="task-indoor">
+                <h5 className="font-medium text-white text-sm">Indoor Plants</h5>
+                <p className="text-xs text-gray-100">Reduce watering and fertilizing. Most houseplants are dormant now.</p>
               </div>
             </div>
           </div>

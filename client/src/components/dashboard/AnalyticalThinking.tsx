@@ -98,7 +98,7 @@ export function AnalyticalThinking() {
             <p className="text-sm text-gray-700 leading-relaxed" data-testid="bias-description">
               {bias.description}
             </p>
-            <div className="bg-coral-pink bg-opacity-10 p-2 rounded text-xs" data-testid="bias-watch">
+            <div className="bg-coral-pink bg-opacity-20 p-2 rounded text-xs text-white" data-testid="bias-watch">
               <strong>Watch for:</strong> {bias.watchFor}
             </div>
           </div>
