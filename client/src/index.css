@@ -48,17 +48,17 @@
 
 .dark {
   --background: hsl(0, 0%, 8%);
-  --foreground: hsl(0, 0%, 95%);
+  --foreground: hsl(0, 0%, 100%);
   --card: hsl(0, 0%, 12%);
-  --card-foreground: hsl(0, 0%, 95%);
+  --card-foreground: hsl(0, 0%, 100%);
   --popover: hsl(0, 0%, 8%);
-  --popover-foreground: hsl(0, 0%, 95%);
+  --popover-foreground: hsl(0, 0%, 100%);
   --primary: hsl(199, 60%, 73%);
   --primary-foreground: hsl(0, 0%, 100%);
   --secondary: hsl(0, 0%, 20%);
-  --secondary-foreground: hsl(0, 0%, 95%);
+  --secondary-foreground: hsl(0, 0%, 100%);
   --muted: hsl(0, 0%, 15%);
-  --muted-foreground: hsl(0, 0%, 65%);
+  --muted-foreground: hsl(0, 0%, 85%);
   --accent: hsl(0, 0%, 15%);
   --accent-foreground: hsl(199, 60%, 73%);
   --destructive: hsl(356.3033, 90.5579%, 54.3137%);
@@ -69,7 +69,7 @@
   
   /* Custom Dashboard Colors - Dark Mode */
   --warm-bg: hsl(0, 0%, 8%);
-  --dark-brown: hsl(0, 0%, 95%);
+  --dark-brown: hsl(0, 0%, 100%);
   --light-accent: hsl(0, 0%, 15%);
 }
 
