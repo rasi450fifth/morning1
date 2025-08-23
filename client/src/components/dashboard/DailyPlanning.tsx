@@ -27,8 +27,6 @@ export function DailyPlanning() {
 
   return (
     <section className="space-y-6">
-      <h2 className="section-title">Daily Planning</h2>
-      
       <div className="grid md:grid-cols-2 gap-6">
         {/* Habit Tracker */}
         <Card className="dashboard-card">
