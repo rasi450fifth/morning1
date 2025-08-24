@@ -1,0 +1,983 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Morning Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-bg': '#FEFCF8',
+                        'sky-blue': '#87CEEB',
+                        'soft-purple': '#9370DB',
+                        'coral-pink': '#FF7F7F',
+                        'sage-green': '#87A96B',
+                        'dark-brown': '#2F1B14',
+                        'light-accent': '#F0F8FF'
+                    },
+                    fontFamily: {
+                        'system': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-warm-bg text-dark-brown font-system">
+    <!-- @COMPONENT: Dashboard [main container] -->
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="sticky top-0 z-50 bg-warm-bg/90 backdrop-blur-md border-b border-gray-200">
+            <div class="max-w-4xl mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <h1 class="text-2xl font-semibold text-dark-brown">Good Morning</h1>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-gray-600" data-bind="currentDate">Tuesday, January 21, 2025</span>
+                        <button class="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
+                            <i class="fas fa-cog text-gray-600"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto px-4 py-8 space-y-8">
+            
+            <!-- @COMPONENT: MorningCentering [breathing, weather, prayer] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Morning Centering</h2>
+                
+                <!-- Box Breathing -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-medium text-dark-brown">Box Breathing</h3>
+                        <button class="bg-sky-blue text-white px-4 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-all duration-200" data-event="click:startBreathing">
+                            <i class="fas fa-play mr-2"></i>Start 4-4-4-4
+                        </button>
+                    </div>
+                    <p class="text-gray-600 text-sm">Take a moment to center yourself with controlled breathing</p>
+                    <!-- @FUNCTIONALITY: Breathing timer with visual guide -->
+                    <div class="mt-4 h-16 bg-light-accent rounded-lg flex items-center justify-center">
+                        <div class="w-12 h-12 bg-sky-blue rounded-full opacity-70 animate-pulse"></div>
+                    </div>
+                </div>
+
+                <!-- Weather & Prayer Times -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Weather -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-medium text-dark-brown">Vienna, VA Weather</h3>
+                            <i class="fas fa-cloud-sun text-sky-blue text-xl"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl font-semibold" data-bind="weather.current.temp">42°F</span>
+                                <span class="text-gray-600" data-bind="weather.current.condition">Partly Cloudy</span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-3 pt-3 border-t border-gray-100">
+                                <!-- @MAP: weather.forecast.map(day => ( -->
+                                <div class="text-center">
+                                    <div class="text-sm font-medium text-gray-600" data-bind="day.name">Wed</div>
+                                    <i class="fas fa-sun text-coral-pink my-1"></i>
+                                    <div class="text-sm" data-bind="day.temp">45°</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-sm font-medium text-gray-600">Thu</div>
+                                    <i class="fas fa-cloud-rain text-sky-blue my-1"></i>
+                                    <div class="text-sm">38°</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-sm font-medium text-gray-600">Fri</div>
+                                    <i class="fas fa-snowflake text-soft-purple my-1"></i>
+                                    <div class="text-sm">32°</div>
+                                </div>
+                                <!-- @END_MAP )) -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prayer Times -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-dark-brown mb-4">Prayer Times Today</h3>
+                        <div class="space-y-2">
+                            <!-- @MAP: prayerTimes.map(prayer => ( -->
+                            <div class="flex justify-between items-center py-1" data-mock="true">
+                                <span class="font-medium text-sage-green" data-bind="prayer.name">Fajr</span>
+                                <span class="text-gray-600" data-bind="prayer.time">5:47 AM</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1">
+                                <span class="font-medium text-sky-blue">Dhuhr</span>
+                                <span class="text-gray-600">12:23 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1">
+                                <span class="font-medium text-coral-pink">Asr</span>
+                                <span class="text-gray-600">3:15 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1">
+                                <span class="font-medium text-soft-purple">Maghrib</span>
+                                <span class="text-gray-600">5:42 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1">
+                                <span class="font-medium text-sage-green">Isha</span>
+                                <span class="text-gray-600">7:02 PM</span>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: MorningCentering -->
+
+            <!-- @COMPONENT: DailyPlanning [habits, goals] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Daily Planning</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Habit Tracker -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-dark-brown mb-4">Habit Tracker</h3>
+                        <div class="space-y-3">
+                            <!-- @MAP: habits.map(habit => ( -->
+                            <div class="flex items-center space-x-3" data-mock="true">
+                                <input type="checkbox" class="w-5 h-5 text-sky-blue rounded focus:ring-sky-blue" data-bind="habit.completed" data-event="change:updateHabit">
+                                <span class="flex-1" data-bind="habit.name">Morning meditation</span>
+                                <span class="text-sm text-gray-500">5 day streak</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-coral-pink rounded focus:ring-coral-pink" checked>
+                                <span class="flex-1">Drink water upon waking</span>
+                                <span class="text-sm text-gray-500">12 day streak</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-sage-green rounded focus:ring-sage-green">
+                                <span class="flex-1">Read for 30 minutes</span>
+                                <span class="text-sm text-gray-500">3 day streak</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <input type="checkbox" class="w-5 h-5 text-soft-purple rounded focus:ring-soft-purple">
+                                <span class="flex-1">Exercise</span>
+                                <span class="text-sm text-gray-500">8 day streak</span>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                        <button class="mt-4 text-sky-blue text-sm font-medium hover:text-opacity-80" data-event="click:addHabit">+ Add habit</button>
+                    </div>
+
+                    <!-- Daily Goals -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-dark-brown mb-4">Today's Goals</h3>
+                        <div class="space-y-3">
+                            <textarea class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-blue focus:border-transparent resize-none" rows="4" placeholder="What do you want to achieve today?" data-bind="dailyGoals" data-event="change:saveDailyGoals">Complete quarterly report review
+Finish French lesson on past tense
+Schedule dentist appointment</textarea>
+                            <div class="flex justify-between text-sm text-gray-500">
+                                <span>Last updated: 6:32 AM</span>
+                                <span data-implementation="Auto-save functionality">Auto-saved</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: DailyPlanning -->
+
+            <!-- @COMPONENT: NewsSection [BBC headlines] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Current Events</h2>
+                
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- International -->
+                        <div>
+                            <h3 class="text-lg font-medium text-coral-pink mb-3">International</h3>
+                            <div class="space-y-3">
+                                <!-- @MAP: news.international.map(article => ( -->
+                                <div class="border-l-2 border-coral-pink pl-3" data-mock="true">
+                                    <a href="#" class="text-sm font-medium text-dark-brown hover:text-coral-pink transition-colors" data-bind="article.title">Climate summit reaches historic agreement on carbon emissions</a>
+                                </div>
+                                <div class="border-l-2 border-coral-pink pl-3">
+                                    <a href="#" class="text-sm font-medium text-dark-brown hover:text-coral-pink transition-colors">European markets respond to new trade policies</a>
+                                </div>
+                                <div class="border-l-2 border-coral-pink pl-3">
+                                    <a href="#" class="text-sm font-medium text-dark-brown hover:text-coral-pink transition-colors">Scientists discover new archaeological site in Peru</a>
+                                </div>
+                                <!-- @END_MAP )) -->
+                            </div>
+                        </div>
+
+                        <!-- US News -->
+                        <div>
+                            <h3 class="text-lg font-medium text-sky-blue mb-3">United States</h3>
+                            <div class="space-y-3">
+                                <div class="border-l-2 border-sky-blue pl-3" data-mock="true">
+                                    <a href="#" class="text-sm font-medium text-dark-brown hover:text-sky-blue transition-colors">Infrastructure bill allocates funds for renewable energy</a>
+                                </div>
+                                <div class="border-l-2 border-sky-blue pl-3">
+                                    <a href="#" class="text-sm font-medium text-dark-brown hover:text-sky-blue transition-colors">Education reform proposals advance in Congress</a>
+                                </div>
+                                <div class="border-l-2 border-sky-blue pl-3">
+                                    <a href="#" class="text-sm font-medium text-dark-brown hover:text-sky-blue transition-colors">Tech companies announce major hiring initiatives</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Business -->
+                        <div>
+                            <h3 class="text-lg font-medium text-sage-green mb-3">Business</h3>
+                            <div class="space-y-3">
+                                <div class="border-l-2 border-sage-green pl-3" data-mock="true">
+                                    <a href="#" class="text-sm font-medium text-dark-brown hover:text-sage-green transition-colors">Electric vehicle sales surge in Q4 reports</a>
+                                </div>
+                                <div class="border-l-2 border-sage-green pl-3">
+                                    <a href="#" class="text-sm font-medium text-dark-brown hover:text-sage-green transition-colors">Banking sector adapts to new digital payment trends</a>
+                                </div>
+                                <div class="border-l-2 border-sage-green pl-3">
+                                    <a href="#" class="text-sm font-medium text-dark-brown hover:text-sage-green transition-colors">Startup funding reaches new milestone</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: NewsSection -->
+
+            <!-- @COMPONENT: LanguageLearning [French content] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">French Learning</h2>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Vocabulary -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-soft-purple mb-4">Daily Vocabulary</h3>
+                        <div class="space-y-4">
+                            <!-- @MAP: frenchNouns.map(noun => ( -->
+                            <div class="p-3 bg-light-accent rounded-lg" data-mock="true">
+                                <div class="font-semibold text-dark-brown" data-bind="noun.french">la bibliothèque</div>
+                                <div class="text-sm text-gray-600" data-bind="noun.english">the library</div>
+                                <div class="text-xs text-gray-500 mt-1" data-bind="noun.example">"Je vais à la bibliothèque chaque mardi."</div>
+                            </div>
+                            <div class="p-3 bg-light-accent rounded-lg">
+                                <div class="font-semibold text-dark-brown">le parapluie</div>
+                                <div class="text-sm text-gray-600">the umbrella</div>
+                                <div class="text-xs text-gray-500 mt-1">"N'oublie pas ton parapluie!"</div>
+                            </div>
+                            <div class="p-3 bg-light-accent rounded-lg">
+                                <div class="font-semibold text-dark-brown">la cuisinière</div>
+                                <div class="text-sm text-gray-600">the cook/stove</div>
+                                <div class="text-xs text-gray-500 mt-1">"Ma grand-mère est une excellente cuisinière."</div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                    </div>
+
+                    <!-- Verb Conjugation -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-coral-pink mb-4">Verb: Prendre (to take)</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">je</span>
+                                <span class="font-medium" data-bind="verb.conjugations.je">prends</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">tu</span>
+                                <span class="font-medium">prends</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">il/elle</span>
+                                <span class="font-medium">prend</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">nous</span>
+                                <span class="font-medium">prenons</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">vous</span>
+                                <span class="font-medium">prenez</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">ils/elles</span>
+                                <span class="font-medium">prennent</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grammar Lesson -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-sage-green mb-4">Grammar Tip</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="grammar.title">Definite Articles</h4>
+                            <p class="text-sm text-gray-700" data-bind="grammar.explanation">
+                                French has four definite articles: le (masculine singular), la (feminine singular), 
+                                l' (before vowels), and les (plural). Unlike English, French articles agree with 
+                                the gender and number of the noun.
+                            </p>
+                            <div class="text-xs text-gray-600 bg-light-accent p-2 rounded">
+                                Example: le chat (the cat, masc.) vs. la maison (the house, fem.)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: LanguageLearning -->
+
+            <!-- @COMPONENT: HistoricalKnowledge [history, figures] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Historical Knowledge</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- This Day in History -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-sky-blue mb-4">January 21st in History</h3>
+                        <div class="space-y-4">
+                            <!-- @MAP: historyEvents.map(event => ( -->
+                            <div class="border-l-4 border-sky-blue pl-4" data-mock="true">
+                                <div class="font-semibold text-dark-brown" data-bind="event.year">1793</div>
+                                <p class="text-sm text-gray-700" data-bind="event.description">King Louis XVI of France is executed during the French Revolution, marking a pivotal moment in European history.</p>
+                            </div>
+                            <div class="border-l-4 border-coral-pink pl-4">
+                                <div class="font-semibold text-dark-brown">1861</div>
+                                <p class="text-sm text-gray-700">Jefferson Davis resigns from the U.S. Senate as Mississippi secedes from the Union, escalating tensions before the Civil War.</p>
+                            </div>
+                            <div class="border-l-4 border-sage-green pl-4">
+                                <div class="font-semibold text-dark-brown">1976</div>
+                                <p class="text-sm text-gray-700">The first commercial Concorde supersonic passenger flight takes off, revolutionizing air travel with unprecedented speed.</p>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                    </div>
+
+                    <!-- Historical Figure -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-soft-purple mb-4">Historical Figure Spotlight</h3>
+                        <div class="space-y-3">
+                            <h4 class="text-xl font-bold text-dark-brown" data-bind="figure.name">Marie Curie</h4>
+                            <div class="text-sm text-gray-600" data-bind="figure.dates">1867-1934</div>
+                            <p class="text-sm text-gray-700 leading-relaxed" data-bind="figure.biography">
+                                Polish-French physicist and chemist who conducted pioneering research on radioactivity. 
+                                She was the first woman to win a Nobel Prize, the first person to win Nobel Prizes in 
+                                two different scientific fields (Physics and Chemistry), and the first female professor 
+                                at the University of Paris. Her discoveries laid the foundation for modern atomic physics 
+                                and medical treatments using radiation.
+                            </p>
+                            <div class="text-xs text-sky-blue font-medium">Notable: First woman to win Nobel Prize (1903)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: HistoricalKnowledge -->
+
+            <!-- @COMPONENT: ScienceMath [facts, concepts, neuroscience] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Science & Mathematics</h2>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Scientific Fact -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-coral-pink mb-4">Scientific Wonder</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="science.title">Quantum Entanglement</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed" data-bind="science.explanation">
+                                When two particles become entangled, measuring one instantly affects the other, 
+                                regardless of the distance between them. Einstein called this "spooky action at a distance." 
+                                This phenomenon is now being used to develop quantum computers and secure communication systems.
+                            </p>
+                            <div class="text-xs text-coral-pink font-medium">Field: Quantum Physics</div>
+                        </div>
+                    </div>
+
+                    <!-- Mathematical Concept -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-sky-blue mb-4">Math Concept</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="math.title">The Fibonacci Spiral</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed" data-bind="math.explanation">
+                                The Fibonacci sequence (0, 1, 1, 2, 3, 5, 8, 13...) appears everywhere in nature: 
+                                flower petals, pinecones, shells, and hurricanes. When you draw squares with sides 
+                                equal to Fibonacci numbers and connect them with curves, you get the golden spiral.
+                            </p>
+                            <div class="bg-light-accent p-3 rounded-lg text-center font-mono text-sm">
+                                φ = (1 + √5) / 2 ≈ 1.618
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Neuroscience Nugget -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-sage-green mb-4">Brain Science</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="neuro.title">Neuroplasticity</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed" data-bind="neuro.explanation">
+                                Your brain can rewire itself throughout your life. Learning new skills literally 
+                                changes your brain's structure by forming new neural connections. This is why 
+                                practicing habits for 21-66 days can make them automatic—you're physically 
+                                reshaping your neural pathways.
+                            </p>
+                            <div class="text-xs text-sage-green font-medium">Fun Fact: Adult brains generate ~1,400 new neurons daily</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: ScienceMath -->
+
+            <!-- @COMPONENT: ArtsCulture [art, etymology, literature] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Arts & Culture</h2>
+                
+                <div class="space-y-6">
+                    <!-- Art Spotlight -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-soft-purple mb-4">Masterpiece Spotlight</h3>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="md:col-span-1">
+                                <!-- A classical Renaissance painting showing figures in flowing robes with dramatic lighting -->
+                                <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Classical Renaissance painting" class="rounded-lg shadow-md w-full" data-mock-image="true">
+                            </div>
+                            <div class="md:col-span-2 space-y-3">
+                                <h4 class="text-xl font-bold text-dark-brown" data-bind="artwork.title">"The School of Athens"</h4>
+                                <div class="text-sm text-gray-600" data-bind="artwork.artist">Raphael, 1509-1511</div>
+                                <p class="text-sm text-gray-700 leading-relaxed" data-bind="artwork.description">
+                                    This Renaissance fresco represents philosophy and is considered one of the greatest 
+                                    paintings in Western art. Located in the Vatican's Apostolic Palace, it depicts 
+                                    classical philosophers including Plato and Aristotle in an idealized ancient setting. 
+                                    The perfect perspective and architectural grandeur exemplify High Renaissance ideals 
+                                    of harmony, proportion, and the synthesis of Christian and classical traditions.
+                                </p>
+                                <div class="text-xs text-soft-purple font-medium">Location: Vatican Museums, Rome</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Etymology -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                            <h3 class="text-lg font-medium text-coral-pink mb-4">Word Origins</h3>
+                            <div class="space-y-3">
+                                <h4 class="text-xl font-bold text-dark-brown" data-bind="etymology.word">Serendipity</h4>
+                                <div class="text-sm text-gray-600" data-bind="etymology.pronunciation">/ˌser.ənˈdɪp.ə.t̬i/</div>
+                                <p class="text-sm text-gray-700 leading-relaxed" data-bind="etymology.origin">
+                                    Coined in 1754 by Horace Walpole from the Persian fairy tale "The Three Princes of Serendip," 
+                                    whose heroes "were always making discoveries, by accidents and sagacity, of things which 
+                                    they were not in quest of." Serendip was the ancient name for Sri Lanka.
+                                </p>
+                                <div class="text-xs text-coral-pink font-medium">Meaning: Pleasant surprise or fortunate discovery</div>
+                            </div>
+                        </div>
+
+                        <!-- Literature -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                            <h3 class="text-lg font-medium text-sky-blue mb-4">Literary Opening</h3>
+                            <div class="space-y-3">
+                                <h4 class="text-lg font-bold text-dark-brown" data-bind="literature.title">"Pride and Prejudice"</h4>
+                                <div class="text-sm text-gray-600" data-bind="literature.author">Jane Austen, 1813</div>
+                                <blockquote class="text-sm text-gray-700 leading-relaxed italic border-l-4 border-sky-blue pl-4" data-bind="literature.opening">
+                                    "It is a truth universally acknowledged, that a single man in possession of a good fortune, 
+                                    must be in want of a wife. However little known the feelings or views of such a man may be 
+                                    on his first entering a neighbourhood, this truth is so well fixed in the minds of the 
+                                    surrounding families, that he is considered the rightful property of some one or other 
+                                    of their daughters."
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: ArtsCulture -->
+
+            <!-- @COMPONENT: InteractiveChallenges [geography, chess, logic, engineering] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Interactive Challenges</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Geography Challenge -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-sky-blue mb-4">Geography Challenge</h3>
+                        <div class="space-y-4">
+                            <div class="relative">
+                                <!-- A scenic mountain landscape with traditional architecture, possibly in Asia -->
+                                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400" alt="Mountain landscape with traditional buildings" class="rounded-lg w-full h-40 object-cover" data-mock-image="true">
+                                <button class="absolute inset-0 bg-black bg-opacity-20 hover:bg-opacity-10 transition-all duration-200 rounded-lg flex items-center justify-center" data-event="click:revealLocation">
+                                    <span class="bg-white bg-opacity-90 text-dark-brown px-4 py-2 rounded-lg font-medium">Reveal Location</span>
+                                </button>
+                            </div>
+                            <p class="text-sm text-gray-600">Can you identify this culturally significant location?</p>
+                            <!-- @STATE: isRevealed:boolean = false -->
+                            <div class="hidden bg-sage-green bg-opacity-10 p-3 rounded-lg" data-implementation="Show on click">
+                                <div class="font-semibold text-sage-green">Bhutan - Tiger's Nest Monastery</div>
+                                <p class="text-xs text-gray-700">Sacred Buddhist site built into a cliff face at 10,000 feet elevation</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chess Puzzle -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-coral-pink mb-4">Chess Position</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">White to move</span>
+                                <span class="bg-coral-pink text-white px-2 py-1 rounded text-xs">Difficulty: 6/10</span>
+                            </div>
+                            <!-- @FUNCTIONALITY: Chess board component with interactive pieces -->
+                            <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center" data-implementation="Chess board with position">
+                                <div class="text-gray-500">♔♕♖♗♘♙<br/>Chess Position<br/>Loading...</div>
+                            </div>
+                            <button class="w-full bg-coral-pink text-white py-2 rounded-lg font-medium hover:bg-opacity-90 transition-colors" data-event="click:showChessSolution">
+                                Show Best Move
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Logic Puzzle -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-soft-purple mb-4">Logic Puzzle</h3>
+                        <div class="space-y-3">
+                            <div class="bg-light-accent p-4 rounded-lg">
+                                <p class="text-sm text-gray-700 leading-relaxed" data-bind="puzzle.question">
+                                    Three switches control three light bulbs in another room. You can flip the switches 
+                                    as many times as you want, but you can only go into the room with the bulbs once. 
+                                    How do you determine which switch controls which bulb?
+                                </p>
+                            </div>
+                            <button class="text-soft-purple text-sm font-medium hover:text-opacity-80" data-event="click:showLogicSolution">
+                                💡 Show Solution
+                            </button>
+                            <div class="hidden bg-soft-purple bg-opacity-10 p-3 rounded-lg text-xs text-gray-700" data-implementation="Reveal on click">
+                                Turn on the first switch for a few minutes, then turn it off. Turn on the second switch and leave it on. 
+                                When you enter the room: the lit bulb = switch 2, the warm unlit bulb = switch 1, the cool unlit bulb = switch 3.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reverse Engineering -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-sage-green mb-4">How Does It Work?</h3>
+                        <div class="space-y-3">
+                            <div class="text-center">
+                                <i class="fas fa-thermometer-half text-4xl text-sage-green mb-2"></i>
+                                <h4 class="font-semibold text-dark-brown" data-bind="engineering.item">Mercury Thermometer</h4>
+                            </div>
+                            <p class="text-sm text-gray-600 text-center">How does this device measure temperature so accurately?</p>
+                            <button class="w-full text-sage-green text-sm font-medium hover:text-opacity-80 border border-sage-green rounded-lg py-2" data-event="click:showEngineeringSolution">
+                                Reveal Mechanism
+                            </button>
+                            <div class="hidden bg-sage-green bg-opacity-10 p-3 rounded-lg text-xs text-gray-700" data-implementation="Reveal on click">
+                                Mercury expands predictably when heated and contracts when cooled. The narrow glass tube amplifies 
+                                this tiny volume change into visible movement. The uniform expansion rate allows precise calibration 
+                                against known temperature points (water freezing/boiling).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: InteractiveChallenges -->
+
+            <!-- @COMPONENT: AnalyticalThinking [optical illusion, paradox, philosophy] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Analytical Thinking</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Optical Illusion -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-sky-blue mb-4">Optical Illusion</h3>
+                        <div class="space-y-4">
+                            <div class="bg-gray-100 rounded-lg p-8 text-center">
+                                <div class="text-6xl font-bold">
+                                    <span class="text-gray-300">A</span><span class="text-gray-700">A</span><span class="text-gray-300">A</span>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-2">Stare at the center A for 30 seconds</p>
+                            </div>
+                            <div class="space-y-2">
+                                <h4 class="font-semibold text-dark-brown">The Hermann Grid Effect</h4>
+                                <p class="text-xs text-gray-700">
+                                    Dark spots appear at intersections of white lines on a black grid. This happens because 
+                                    of lateral inhibition in your retinal ganglion cells—when they detect contrast, 
+                                    neighboring cells reduce their response, creating the illusion of darkness.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistical Paradox -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-coral-pink mb-4">Statistical Insight</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="stats.title">The Birthday Paradox</h4>
+                            <div class="bg-light-accent p-4 rounded-lg text-center">
+                                <div class="text-2xl font-bold text-coral-pink">23 People</div>
+                                <div class="text-sm text-gray-600">50.7% chance of shared birthday</div>
+                            </div>
+                            <p class="text-xs text-gray-700 leading-relaxed">
+                                In a room of just 23 people, there's a greater than 50% chance that two people share a birthday. 
+                                With 70 people, it's 99.9% certain! This seems counterintuitive because we think about the chance 
+                                of matching our specific birthday, not any two people matching.
+                            </p>
+                            <div class="text-xs text-coral-pink font-medium">Math: 365!/((365-n)!×365^n)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Philosophy -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-soft-purple mb-4">Thought Experiment</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="philosophy.title">Ship of Theseus</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed" data-bind="philosophy.question">
+                                If you gradually replace every part of a ship with new parts, is it still the same ship? 
+                                What if you then rebuild a new ship from all the original parts—which one is the "real" Ship of Theseus?
+                            </p>
+                            <div class="text-xs text-soft-purple font-medium">Explores: Identity, continuity, and change</div>
+                        </div>
+                    </div>
+
+                    <!-- Logical Fallacy -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-sage-green mb-4">Logical Fallacy</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="fallacy.name">Survivorship Bias</h4>
+                            <div class="bg-light-accent p-3 rounded-lg text-xs">
+                                "All the successful entrepreneurs I know dropped out of college, so dropping out leads to success."
+                            </div>
+                            <p class="text-xs text-gray-700">
+                                We only see the successful dropouts, not the millions who dropped out and failed. 
+                                This bias appears in business advice, historical accounts, and product reviews.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Cognitive Bias -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-coral-pink mb-4">Bias Awareness</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="bias.name">Anchoring Effect</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed" data-bind="bias.description">
+                                We rely too heavily on the first piece of information encountered. In negotiations, 
+                                whoever states the first number "anchors" the entire discussion around that range.
+                            </p>
+                            <div class="bg-coral-pink bg-opacity-10 p-2 rounded text-xs">
+                                <strong>Watch for:</strong> First impressions, initial prices, opening offers in negotiations
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: AnalyticalThinking -->
+
+            <!-- @COMPONENT: Innovation [engineering, design, invention] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Innovation & Design</h2>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Engineering Challenge -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-sky-blue mb-4">Engineering Problem</h3>
+                        <div class="space-y-3">
+                            <div class="bg-light-accent p-4 rounded-lg">
+                                <p class="text-sm text-gray-700 font-medium" data-bind="engineering.challenge">
+                                    How would you design a bridge that can expand and contract with temperature changes 
+                                    without losing structural integrity?
+                                </p>
+                            </div>
+                            <button class="text-sky-blue text-xs font-medium hover:text-opacity-80" data-event="click:showEngineeringSolution">
+                                💡 Show Engineering Solution
+                            </button>
+                            <div class="hidden bg-sky-blue bg-opacity-10 p-3 rounded-lg text-xs text-gray-700" data-implementation="Reveal on click">
+                                Use expansion joints—gaps filled with flexible materials that allow movement. Modern bridges 
+                                use bearings that slide or rock, allowing the structure to "breathe" safely.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Design Principle -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-coral-pink mb-4">Design Excellence</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="design.example">Swiss Army Knife</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed" data-bind="design.principle">
+                                Perfect example of <strong>functional elegance</strong>—maximum utility in minimal space. 
+                                Every tool serves multiple purposes, the design is immediately intuitive, and quality 
+                                materials ensure reliability. Form follows function while maintaining aesthetic appeal.
+                            </p>
+                            <div class="text-xs text-coral-pink font-medium">Principle: Simplicity with maximum functionality</div>
+                        </div>
+                    </div>
+
+                    <!-- Invention Story -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-sage-green mb-4">Invention Necessity</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="invention.item">Post-it Notes</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed" data-bind="invention.story">
+                                Spencer Silver accidentally created a weak adhesive while trying to make super-strong glue. 
+                                Years later, colleague Art Fry needed bookmarks that wouldn't fall out of his hymnal. 
+                                The "failed" adhesive became perfect for removable, repositionable notes.
+                            </p>
+                            <div class="text-xs text-sage-green font-medium">Lesson: Accidents + need recognition = innovation</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: Innovation -->
+
+            <!-- @COMPONENT: CulturalInsights [cross-cultural, consequences, alt-history] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Cultural & Social Insights</h2>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Cross-Cultural -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-soft-purple mb-4">Cultural Solutions</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="cultural.problem">Urban Transportation</h4>
+                            <div class="space-y-2 text-xs">
+                                <div class="border-l-3 border-soft-purple pl-3">
+                                    <strong class="text-soft-purple">Netherlands:</strong> Extensive bike infrastructure and bike-train integration
+                                </div>
+                                <div class="border-l-3 border-coral-pink pl-3">
+                                    <strong class="text-coral-pink">Japan:</strong> Precise timing systems and passenger etiquette
+                                </div>
+                                <div class="border-l-3 border-sage-green pl-3">
+                                    <strong class="text-sage-green">Singapore:</strong> Dynamic pricing to reduce congestion
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-600">Different cultures solve the same problem through their unique values and constraints.</p>
+                        </div>
+                    </div>
+
+                    <!-- Unintended Consequences -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-coral-pink mb-4">Unintended Effects</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="consequences.case">Cobra Effect</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed" data-bind="consequences.story">
+                                British colonial India offered bounties for dead cobras to reduce snake population. 
+                                People started breeding cobras for the bounty money. When the program ended, 
+                                breeders released their snakes, making the problem worse than before.
+                            </p>
+                            <div class="text-xs text-coral-pink font-medium">Lesson: Incentives can backfire spectacularly</div>
+                        </div>
+                    </div>
+
+                    <!-- Alternative History -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-sky-blue mb-4">What If...</h3>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-dark-brown" data-bind="althistory.scenario">...the Library of Alexandria never burned?</h4>
+                            <p class="text-sm text-gray-700 leading-relaxed" data-bind="althistory.speculation">
+                                We might have experienced the Scientific Revolution 1000+ years earlier. Ancient Greek 
+                                and Roman scientific knowledge, combined with preserved works from around the world, 
+                                could have accelerated human progress dramatically. Renaissance thinking might have emerged 
+                                in the 8th century instead of the 15th.
+                            </p>
+                            <div class="text-xs text-sky-blue font-medium">Impact: Technology, medicine, exploration</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: CulturalInsights -->
+
+            <!-- @COMPONENT: NaturePractical [gardening, seasonal] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Nature & Seasonal Life</h2>
+                
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-medium text-sage-green mb-4">January in Virginia Gardens</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <!-- A winter garden scene in Virginia with dormant plants and frost -->
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400" alt="Winter garden with frost and dormant plants" class="rounded-lg w-full h-40 object-cover" data-mock-image="true">
+                            <div class="space-y-2">
+                                <h4 class="font-semibold text-dark-brown">What's Happening Now</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li class="flex items-center"><i class="fas fa-leaf text-sage-green w-4 mr-2"></i>Trees are dormant, storing energy for spring</li>
+                                    <li class="flex items-center"><i class="fas fa-snowflake text-sky-blue w-4 mr-2"></i>Soil preparation time for spring planting</li>
+                                    <li class="flex items-center"><i class="fas fa-seedling text-coral-pink w-4 mr-2"></i>Indoor seed starting for tomatoes and peppers</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <h4 class="font-semibold text-dark-brown">Seasonal Tasks</h4>
+                            <div class="space-y-3">
+                                <div class="bg-sage-green bg-opacity-10 p-3 rounded-lg">
+                                    <h5 class="font-medium text-sage-green text-sm">Plan Your Garden</h5>
+                                    <p class="text-xs text-gray-600">Order seeds, sketch layouts, research new varieties for this year's growing season.</p>
+                                </div>
+                                <div class="bg-sky-blue bg-opacity-10 p-3 rounded-lg">
+                                    <h5 class="font-medium text-sky-blue text-sm">Wildlife Support</h5>
+                                    <p class="text-xs text-gray-600">Keep bird feeders full and provide unfrozen water sources for winter wildlife.</p>
+                                </div>
+                                <div class="bg-coral-pink bg-opacity-10 p-3 rounded-lg">
+                                    <h5 class="font-medium text-coral-pink text-sm">Indoor Plants</h5>
+                                    <p class="text-xs text-gray-600">Reduce watering and fertilizing. Most houseplants are dormant now.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: NaturePractical -->
+
+            <!-- @COMPONENT: Closing [joke, prayer times repeat] -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold text-dark-brown mb-4">Closing Thoughts</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Daily Humor -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-coral-pink mb-4">Daily Smile</h3>
+                        <div class="space-y-3">
+                            <div class="bg-light-accent p-4 rounded-lg text-center">
+                                <p class="text-sm text-gray-700 font-medium" data-bind="joke.setup">
+                                    Why don't scientists trust atoms?
+                                </p>
+                                <p class="text-sm text-coral-pink font-semibold mt-2" data-bind="joke.punchline">
+                                    Because they make up everything!
+                                </p>
+                            </div>
+                            <div class="text-xs text-gray-500 text-center">Science humor to brighten your day ✨</div>
+                        </div>
+                    </div>
+
+                    <!-- Prayer Times Reminder -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-medium text-soft-purple mb-4">Prayer Times Reminder</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center py-1">
+                                <span class="font-medium text-sage-green">Remaining Today</span>
+                                <span class="text-xs text-gray-500">Vienna, VA</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1">
+                                <span class="text-coral-pink">Asr</span>
+                                <span class="text-gray-600">3:15 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1">
+                                <span class="text-soft-purple">Maghrib</span>
+                                <span class="text-gray-600">5:42 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1">
+                                <span class="text-sage-green">Isha</span>
+                                <span class="text-gray-600">7:02 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Message -->
+                <div class="bg-gradient-to-r from-sky-blue to-sage-green bg-opacity-10 rounded-2xl p-6 text-center">
+                    <p class="text-dark-brown font-medium">Have a purposeful and productive day! 🌟</p>
+                    <p class="text-sm text-gray-600 mt-2">Return tomorrow for new insights and challenges</p>
+                </div>
+            </section>
+            <!-- @END_COMPONENT: Closing -->
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-gray-200 mt-12">
+            <div class="max-w-4xl mx-auto px-4 py-8">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="text-sm text-gray-500">
+                        <span data-bind="lastUpdated">Last updated: January 21, 2025 at 6:45 AM</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-sm text-gray-500 hover:text-dark-brown transition-colors" data-event="click:resetData">
+                            Reset Data
+                        </button>
+                        <button class="text-sm text-gray-500 hover:text-dark-brown transition-colors" data-event="click:exportData">
+                            Export Progress
+                        </button>
+                        <button class="bg-sky-blue text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-opacity-90 transition-all duration-200" data-event="click:openSettings">
+                            Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- @END_COMPONENT: Dashboard -->
+
+    <script>
+        // TODO: Implement React components, API integrations, and state management
+        
+        (function() {
+            'use strict';
+            
+            // Basic interaction handlers for mockup demonstration
+            const dashboard = {
+                init() {
+                    this.bindEvents();
+                    this.loadSavedData();
+                },
+                
+                bindEvents() {
+                    // Breathing exercise
+                    const breathingBtn = document.querySelector('[data-event="click:startBreathing"]');
+                    if (breathingBtn) {
+                        breathingBtn.addEventListener('click', this.startBreathingExercise);
+                    }
+                    
+                    // Habit checkboxes
+                    const habitCheckboxes = document.querySelectorAll('input[type="checkbox"][data-event*="updateHabit"]');
+                    habitCheckboxes.forEach(checkbox => {
+                        checkbox.addEventListener('change', this.updateHabit);
+                    });
+                    
+                    // Interactive challenge buttons
+                    document.querySelectorAll('[data-event*="click:reveal"], [data-event*="click:show"]').forEach(btn => {
+                        btn.addEventListener('click', this.handleReveal);
+                    });
+                },
+                
+                startBreathingExercise() {
+                    const btn = this;
+                    btn.innerHTML = '<i class="fas fa-pause mr-2"></i>Breathing...';
+                    btn.disabled = true;
+                    
+                    // Reset after demo time
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-play mr-2"></i>Start 4-4-4-4';
+                        btn.disabled = false;
+                    }, 3000);
+                },
+                
+                updateHabit(event) {
+                    const checkbox = event.target;
+                    const habitData = {
+                        completed: checkbox.checked,
+                        date: new Date().toDateString()
+                    };
+                    // TODO: Save to localStorage and sync with cloud storage
+                    console.log('Habit updated:', habitData);
+                },
+                
+                handleReveal(event) {
+                    const button = event.target;
+                    const parent = button.closest('.bg-white');
+                    const hiddenElement = parent.querySelector('.hidden');
+                    
+                    if (hiddenElement) {
+                        hiddenElement.classList.remove('hidden');
+                        button.style.display = 'none';
+                    }
+                },
+                
+                loadSavedData() {
+                    // TODO: Load user preferences, habit data, and goals from localStorage
+                    console.log('Loading saved user data...');
+                }
+            };
+            
+            // Initialize dashboard when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => dashboard.init());
+            } else {
+                dashboard.init();
+            }
+        })();
+    </script>
+</body>
+</html>
